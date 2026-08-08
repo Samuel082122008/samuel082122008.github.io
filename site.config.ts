@@ -1,5 +1,7 @@
+import { defineSiteConfig } from "./src/config/site";
+
 export const siteConfig = defineSiteConfig({
-	author: "Samuel Cubillos Martinez", 
+	author: "Samuel Cubillos Martinez",
 	siteUrl: "https://samuel082122008.github.io",
 	hero: {
 		headline: "Portafolio y blog",
@@ -29,7 +31,7 @@ export const siteConfig = defineSiteConfig({
 		},
 	],
 	researchInterests: [
-		"Desarrollo ",
+		"Desarrollo",
 		"Angular",
 		"Spring Boot",
 		"Java",
@@ -46,7 +48,6 @@ export const siteConfig = defineSiteConfig({
 			icon: "i-mdi:email-outline",
 		},
 	],
-
 });
 
 export default siteConfig;
