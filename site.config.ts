@@ -50,10 +50,7 @@ export const siteConfig = defineSiteConfig({
 	],
 	navLinks: [
 		{ href: "/presentacion", label: "Presentación" },
-		{ href: "/about", label: "Sobre mí" },
-		{ href: "/projects", label: "Proyectos" },
 		{ href: "/evidencias", label: "Evidencias" },
-		{ href: "/posts", label: "Blog" },
 	],
 	homeBlocks: {
 		hero: { enabled: true },
