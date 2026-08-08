@@ -47,4 +47,6 @@ export const siteConfig = defineSiteConfig({
 		},
 	],
 
-})
+});
+
+export default siteConfig;
