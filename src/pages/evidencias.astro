@@ -1,0 +1,55 @@
+import Layout from "../layouts/Layout.astro";
+import PageJumpNav from "../components/PageJumpNav.astro";
+
+const navItems = [
+  { href: "#modelado", label: "Modelado" },
+  { href: "#normalizacion", label: "Normalización" },
+  { href: "#sql", label: "SQL" },
+  { href: "#proyecto", label: "Proyecto" },
+];
+
+<Layout
+  title="Evidencias"
+  description="Evidencias de aprendizaje del curso: modelado, normalización, SQL y proyecto."
+  schemaType="CollectionPage"
+>
+  <div class="page-stack">
+    <header class="page-header">
+      <p class="page-kicker">Bases de Datos 1</p>
+      <h1 class="page-title">Evidencias</h1>
+      <p class="page-description">Acá voy a ir subiendo el trabajo del curso a lo largo del semestre.</p>
+    </header>
+
+    <PageJumpNav items={navItems} />
+
+    <div class="space-y-7 sm:space-y-8">
+      <section id="modelado" class="content-section scroll-mt-20 space-y-4">
+        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
+          <h2 class="section-heading">Modelado</h2>
+        </header>
+        <p class="body-copy">Próximamente.</p>
+      </section>
+
+      <section id="normalizacion" class="content-section scroll-mt-20 space-y-4">
+        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
+          <h2 class="section-heading">Normalización</h2>
+        </header>
+        <p class="body-copy">Próximamente.</p>
+      </section>
+
+      <section id="sql" class="content-section scroll-mt-20 space-y-4">
+        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
+          <h2 class="section-heading">SQL</h2>
+        </header>
+        <p class="body-copy">Próximamente.</p>
+      </section>
+
+      <section id="proyecto" class="content-section scroll-mt-20 space-y-4">
+        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
+          <h2 class="section-heading">Proyecto</h2>
+        </header>
+        <p class="body-copy">Próximamente.</p>
+      </section>
+    </div>
+  </div>
+</Layout>

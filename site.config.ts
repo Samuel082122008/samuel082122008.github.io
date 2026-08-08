@@ -48,6 +48,18 @@ export const siteConfig = defineSiteConfig({
 			icon: "i-mdi:email-outline",
 		},
 	],
+	navLinks: [
+		{ href: "/presentacion", label: "Presentación" },
+		{ href: "/about", label: "Sobre mí" },
+		{ href: "/projects", label: "Proyectos" },
+		{ href: "/evidencias", label: "Evidencias" },
+		{ href: "/posts", label: "Blog" },
+	],
+	homeBlocks: {
+		hero: { enabled: true },
+		publications: { enabled: false },
+		posts: { enabled: true },
+	},
 });
 
 export default siteConfig;
