@@ -1,36 +1,38 @@
 export const siteConfig = defineSiteConfig({
-	author: "Samuel", // poné tu nombre completo
+	author: "Samuel Cubillos Martinez", 
 	siteUrl: "https://samuel082122008.github.io",
 	hero: {
-		headline: "Portafolio y blog de desarrollo full-stack",
+		headline: "Portafolio y blog",
 		subheadline:
-			"Estudiante de desarrollo de software en la Universidad El Bosque, Bogotá. Este sitio documenta mis proyectos y aprendizajes a lo largo del semestre.",
+			"Estudiante de Ingenieria de Sistemas en la Universidad El Bosque, Bogotá. Este sitio documenta mis proyectos y aprendizajes a lo largo del semestre.",
 		profileImage: "/profile.svg",
 		statusBadge: "Estudiante",
 	},
 
 	description:
-		"Portafolio y blog de un estudiante de desarrollo de software full-stack en Bogotá, Colombia.",
+		"Portafolio y blog de un estudiante de Ingenieria de Sistemas en Bogotá, Colombia.",
 	keywords: [
-		"desarrollo full-stack",
+		"desarrollo",
 		"Angular",
 		"Spring Boot",
+		"Java",
 		"portafolio",
 		"estudiante",
 	],
 
 	affiliations: [
 		{
-			role: "Estudiante de Desarrollo de Software",
+			role: "Estudiante de Ingenieria de Sistemas",
 			department: "",
 			institution: "Universidad El Bosque",
 			url: "https://www.uelbosque.edu.co",
 		},
 	],
 	researchInterests: [
-		"Desarrollo Full-Stack",
+		"Desarrollo ",
 		"Angular",
 		"Spring Boot",
+		"Java",
 	],
 	socialLinks: [
 		{
@@ -40,7 +42,7 @@ export const siteConfig = defineSiteConfig({
 		},
 		{
 			label: "Email",
-			href: "mailto:TU_CORREO_AQUI@ejemplo.com",
+			href: "mailto:samuelcubillosmar@gmail.com",
 			icon: "i-mdi:email-outline",
 		},
 	],
