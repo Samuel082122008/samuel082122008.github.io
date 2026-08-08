@@ -46,3 +46,5 @@ export const siteConfig = defineSiteConfig({
 			icon: "i-mdi:email-outline",
 		},
 	],
+
+})
