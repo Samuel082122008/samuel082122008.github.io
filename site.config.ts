@@ -55,7 +55,7 @@ export const siteConfig = defineSiteConfig({
 	homeBlocks: {
 		hero: { enabled: true },
 		publications: { enabled: false },
-		posts: { enabled: true },
+		posts: { enabled: false },
 	},
 });
 
