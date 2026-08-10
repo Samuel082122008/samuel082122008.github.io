@@ -49,7 +49,7 @@ export const siteConfig = defineSiteConfig({
 		},
 	],
 	navLinks: [
-		{ href: "/presentacion", label: "Presentación" },
+		{ href: "/", label: "Presentación" },
 		{ href: "/evidencias", label: "Evidencias" },
 	],
 	homeBlocks: {
