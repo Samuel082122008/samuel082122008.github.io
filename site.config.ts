@@ -27,7 +27,7 @@ export const siteConfig = defineSiteConfig({
 			role: "Estudiante de Ingenieria de Sistemas",
 			department: "",
 			institution: "Universidad El Bosque",
-			url: "https://www.uelbosque.edu.co",
+			url: "https://www.unbosque.edu.co",
 		},
 	],
 	researchInterests: [
