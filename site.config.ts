@@ -7,7 +7,7 @@ export const siteConfig = defineSiteConfig({
 		headline: "Portafolio y blog",
 		subheadline:
 			"Estudiante de Ingenieria de Sistemas en la Universidad El Bosque, Bogotá. Este sitio documenta mis proyectos y aprendizajes a lo largo del semestre.",
-		profileImage: "/profile.svg",
+		profileImage: "/profile.svg.jpg",
 		statusBadge: "Estudiante",
 	},
 
