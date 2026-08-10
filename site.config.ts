@@ -4,7 +4,7 @@ export const siteConfig = defineSiteConfig({
 	author: "Samuel Cubillos Martinez",
 	siteUrl: "https://samuel082122008.github.io",
 	hero: {
-		headline: "Portafolio y blog",
+		headline: "Portafolio",
 		subheadline:
 			"Estudiante de Ingenieria de Sistemas en la Universidad El Bosque, Bogotá. Este sitio documenta mis proyectos y aprendizajes a lo largo del semestre.",
 		profileImage: "/profile.svg.jpg",
