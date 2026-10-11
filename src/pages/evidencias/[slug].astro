@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const archivos = import.meta.glob("../../evidencias/*.md", { eager: true }) as Record<string, any>;
+
+  return Object.entries(archivos).map(([ruta, mod]) => ({
+    params: { slug: ruta.split("/").pop()!.replace(".md", "") },
+    props: { frontmatter: mod.frontmatter, Content: mod.Content },
+  }));
+}
+
+const { frontmatter, Content } = Astro.props;
+---
+
+<Layout
+  title={frontmatter.titulo}
+  description={frontmatter.resumen ?? ""}
+  schemaType="Article"
+>
+  <div class="page-stack">
+    <a href="/evidencias" class="action-link glass-control self-start px-3.5">
+      <span class="i-ph-arrow-left text-base" aria-hidden="true"></span>
+      Volver a Evidencias
+    </a>
+
+    <header class="page-header">
+      <p class="page-kicker">{frontmatter.seccion}</p>
+      <h1 class="page-title">{frontmatter.titulo}</h1>
+      {frontmatter.fecha && <p class="entry-meta tabular-nums">{frontmatter.fecha}</p>}
+    </header>
+
+    <article class="space-y-4 [&_p]:body-copy [&_img]:rounded-lg [&_img]:border [&_img]:border-gray-200 [&_img]:dark:border-gray-700 [&_h2]:section-heading [&_h3]:entry-title">
+      <Content />
+    </article>
+
+    <a href="/evidencias" class="action-link glass-control self-start px-3.5">
+      <span class="i-ph-arrow-left text-base" aria-hidden="true"></span>
+      Volver a Evidencias
+    </a>
+  </div>
+</Layout>

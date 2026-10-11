@@ -2,52 +2,29 @@
 import Layout from "../layouts/Layout.astro";
 import PageJumpNav from "../components/PageJumpNav.astro";
 
-interface Entrada {
-  titulo: string;
-  fecha?: string;
-  texto: string[]; // cada elemento es un párrafo
-  imagenes?: { src: string; alt: string }[];
-}
+const archivos = import.meta.glob("../evidencias/*.md", { eager: true }) as Record<
+  string,
+  { frontmatter: Record<string, any> }
+>;
 
-const secciones: { id: string; titulo: string; entradas: Entrada[] }[] = [
-  {
-    id: "modelado",
-    titulo: "Modelado",
-    entradas: [
-      {
-        titulo: "Mi primer modelo entidad-relación",
-        fecha: "10 oct 2026",
-        texto: [
-          "Acá va el primer párrafo explicando qué hiciste.",
-          "Acá va el segundo párrafo, con lo que aprendiste.",
-        ],
-        imagenes: [
-          // { src: "/img/modelado-1.png", alt: "Diagrama entidad-relación" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "normalizacion",
-    titulo: "Normalización",
-    entradas: [],
-  },
-  {
-    id: "sql",
-    titulo: "SQL",
-    entradas: [],
-  },
-  {
-    id: "proyecto",
-    titulo: "Proyecto",
-    entradas: [],
-  },
-];
-
-const navItems = secciones.map((s) => ({
-  href: `#${s.id}`,
-  label: s.titulo,
+const entradas = Object.entries(archivos).map(([ruta, mod]) => ({
+  slug: ruta.split("/").pop()!.replace(".md", ""),
+  ...mod.frontmatter,
 }));
+
+const secciones = [
+  { id: "modelado", titulo: "Modelado" },
+  { id: "normalizacion", titulo: "Normalización" },
+  { id: "sql", titulo: "SQL" },
+  { id: "proyecto", titulo: "Proyecto" },
+].map((s) => ({
+  ...s,
+  entradas: entradas
+    .filter((e) => e.seccion === s.id)
+    .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))),
+}));
+
+const navItems = secciones.map((s) => ({ href: `#${s.id}`, label: s.titulo }));
 ---
 
 <Layout
@@ -76,33 +53,33 @@ const navItems = secciones.map((s) => ({
           {seccion.entradas.length === 0 ? (
             <p class="body-copy">Próximamente.</p>
           ) : (
-            <div class="space-y-4">
-              {seccion.entradas.map((entrada) => (
-                <article class="surface-card space-y-3">
-                  <div class="flex flex-wrap items-baseline justify-between gap-2">
-                    <h3 class="entry-title">{entrada.titulo}</h3>
-                    {entrada.fecha && (
-                      <p class="entry-meta tabular-nums">{entrada.fecha}</p>
+            <div class="grid gap-4 md:grid-cols-2">
+              {seccion.entradas.map((e) => (
+                <a href={`/evidencias/${e.slug}`} class="group block h-full no-underline">
+                  <article class="surface-card-hover flex h-full flex-col">
+                    {e.imagen && (
+                      <img
+                        src={e.imagen}
+                        alt={e.titulo}
+                        loading="lazy"
+                        class="mb-4 aspect-video w-full rounded-lg border border-gray-200 object-cover dark:border-gray-700"
+                      />
                     )}
-                  </div>
-
-                  {entrada.texto.map((parrafo) => (
-                    <p class="body-copy">{parrafo}</p>
-                  ))}
-
-                  {entrada.imagenes && entrada.imagenes.length > 0 && (
-                    <div class="grid gap-3 sm:grid-cols-2">
-                      {entrada.imagenes.map((img) => (
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          loading="lazy"
-                          class="w-full rounded-lg border border-gray-200 dark:border-gray-700"
-                        />
-                      ))}
-                    </div>
-                  )}
-                </article>
+                    {e.fecha && (
+                      <p class="entry-meta tabular-nums">{e.fecha}</p>
+                    )}
+                    <h3 class="entry-title mt-1 transition-colors group-hover:text-accent-700 dark:group-hover:text-accent-300">
+                      {e.titulo}
+                    </h3>
+                    {e.resumen && (
+                      <p class="entry-summary mt-2 line-clamp-3">{e.resumen}</p>
+                    )}
+                    <span class="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-semibold text-accent-700 dark:text-accent-300">
+                      Ver más
+                      <span class="i-ph-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></span>
+                    </span>
+                  </article>
+                </a>
               ))}
             </div>
           )}
