@@ -1,0 +1,460 @@
+/* =========================================================
+   Estilo personal del portafolio de Samuel
+   ========================================================= */
+
+:root {
+  --fx-violet: #7c3aed;
+  --fx-pink: #ec4899;
+  --fx-cyan: #06b6d4;
+}
+
+/* ---------- Vidrio y bordes en tonos violeta ---------- */
+html:root {
+  --glass-control-hover: rgb(237 233 254 / 0.9);
+  --glass-control-pressed: rgb(221 214 254 / 0.9);
+  --glass-active: rgb(237 233 254 / 0.85);
+  --glass-border-accent: rgb(124 58 237 / 0.4);
+  --glass-control-border: rgb(91 33 182 / 0.16);
+  --glass-control-border-hover: rgb(91 33 182 / 0.34);
+}
+html.dark:root {
+  --glass-control-hover: rgb(76 29 149 / 0.45);
+  --glass-control-pressed: rgb(91 33 182 / 0.55);
+  --glass-active: rgb(91 33 182 / 0.5);
+  --glass-border-accent: rgb(167 139 250 / 0.55);
+  --glass-control-border: rgb(255 255 255 / 0.12);
+  --glass-control-border-hover: rgb(196 181 253 / 0.4);
+}
+
+/* ---------- Fondo de toda la página ---------- */
+html body {
+  background-image:
+    radial-gradient(42rem 30rem at 92% -6%, rgb(124 58 237 / 0.16), transparent 70%),
+    radial-gradient(36rem 28rem at -6% 24%, rgb(236 72 153 / 0.1), transparent 70%),
+    radial-gradient(38rem 30rem at 62% 108%, rgb(6 182 212 / 0.12), transparent 70%);
+  background-attachment: fixed;
+}
+html.dark:root body {
+  background-image:
+    radial-gradient(42rem 30rem at 92% -6%, rgb(124 58 237 / 0.28), transparent 70%),
+    radial-gradient(36rem 28rem at -6% 24%, rgb(236 72 153 / 0.16), transparent 70%),
+    radial-gradient(38rem 30rem at 62% 108%, rgb(6 182 212 / 0.16), transparent 70%);
+}
+@media (max-width: 767px) {
+  html body {
+    background-attachment: scroll;
+  }
+}
+
+/* ---------- Selección y foco ---------- */
+html ::selection {
+  background: rgb(167 139 250 / 0.5);
+  color: #1e1b4b;
+}
+html.dark ::selection {
+  color: #ffffff;
+}
+html :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline-color: #7c3aed;
+}
+html.dark:root :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline-color: #c4b5fd;
+}
+
+/* ---------- Barra superior ---------- */
+.liquid-glass-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--fx-violet), var(--fx-pink), var(--fx-cyan));
+  opacity: 0.85;
+  pointer-events: none;
+}
+html .site-monogram-glass {
+  background: linear-gradient(135deg, var(--fx-violet), var(--fx-pink));
+  border-color: transparent;
+  color: #ffffff !important;
+  box-shadow: 0 6px 16px -6px rgb(124 58 237 / 0.7);
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes fx-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes fx-bgmove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes fx-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes fx-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes fx-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fx-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes fx-reveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+
+.fx-float { animation: fx-float 6s ease-in-out infinite; }
+.fx-float-slow { animation: fx-float 9s ease-in-out infinite; }
+.fx-pulse { animation: fx-pulse 2s ease-in-out infinite; }
+.fx-blink { animation: fx-blink 1s steps(1) infinite; color: #ec4899; }
+.fx-rise {
+  opacity: 0;
+  animation: fx-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.fx-d1 { animation-delay: 0.1s; }
+.fx-d2 { animation-delay: 0.25s; }
+.fx-d3 { animation-delay: 0.4s; }
+.fx-d4 { animation-delay: 0.55s; }
+
+/* Aparece al hacer scroll (solo en navegadores que lo soportan) */
+@supports (animation-timeline: view()) {
+  .fx-reveal {
+    animation: fx-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-reveal, .fx-float, .fx-float-slow, .fx-marquee-track { animation: none !important; }
+}
+
+/* ---------- Texto con degradado animado ---------- */
+.fx-gradient-text {
+  background-image: linear-gradient(90deg, #7c3aed, #ec4899, #06b6d4, #7c3aed);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: fx-bgmove 8s ease-in-out infinite;
+}
+
+/* ---------- Decoración de fondo ---------- */
+.fx-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  pointer-events: none;
+}
+.fx-blob-violet { background: rgb(124 58 237 / 0.35); }
+.fx-blob-pink { background: rgb(236 72 153 / 0.28); }
+.fx-blob-cyan { background: rgb(6 182 212 / 0.28); }
+
+.fx-grid {
+  background-image:
+    linear-gradient(to right, rgb(124 58 237 / 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(124 58 237 / 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
+}
+.fx-grid-white {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.18) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+}
+
+/* Aura animada detrás de la foto */
+.fx-ring {
+  background: linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4, #7c3aed);
+  background-size: 300% 300%;
+  filter: blur(16px);
+  opacity: 0.75;
+  animation: fx-bgmove 6s ease-in-out infinite;
+}
+
+/* Marco con degradado para el video */
+.fx-frame {
+  padding: 4px;
+  border-radius: 1.6rem;
+  background: linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4);
+  box-shadow: 0 30px 60px -30px rgb(124 58 237 / 0.6);
+}
+
+/* ---------- Tarjetas ---------- */
+.fx-card,
+.fx-panel {
+  border-radius: 1.25rem;
+  border: 1px solid rgb(124 58 237 / 0.16);
+  background: rgb(255 255 255 / 0.7);
+  box-shadow: 0 1px 2px rgb(34 35 33 / 0.05), 0 14px 30px -22px rgb(124 58 237 / 0.35);
+}
+.fx-card {
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.fx-card:hover {
+  transform: translateY(-5px);
+  border-color: rgb(124 58 237 / 0.45);
+  box-shadow: 0 24px 44px -22px rgb(124 58 237 / 0.5);
+}
+html.dark .fx-card,
+html.dark .fx-panel {
+  background: rgb(34 35 33 / 0.62);
+  border-color: rgb(255 255 255 / 0.1);
+}
+html.dark .fx-card:hover {
+  border-color: rgb(196 181 253 / 0.45);
+}
+
+.fx-icon {
+  display: inline-flex;
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  box-shadow: 0 10px 20px -10px rgb(124 58 237 / 0.7);
+}
+
+.fx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(124 58 237 / 0.3);
+  background: rgb(124 58 237 / 0.08);
+  color: #5b21b6;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+html.dark .fx-chip {
+  color: #ddd6fe;
+  border-color: rgb(196 181 253 / 0.3);
+}
+
+/* ---------- Botones ---------- */
+.fx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(124 58 237 / 0.3);
+  background: rgb(255 255 255 / 0.7);
+  color: #5b21b6;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+}
+.fx-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 12px 24px -12px rgb(124 58 237 / 0.7);
+}
+html.dark .fx-btn {
+  background: rgb(255 255 255 / 0.06);
+  color: #ddd6fe;
+  border-color: rgb(255 255 255 / 0.16);
+}
+html.dark .fx-btn:hover {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.fx-cta {
+  background-image: linear-gradient(110deg, #7c3aed, #ec4899, #06b6d4, #7c3aed);
+  background-size: 300% 100%;
+  animation: fx-bgmove 10s ease-in-out infinite;
+  box-shadow: 0 24px 48px -24px rgb(124 58 237 / 0.7);
+  transition: transform 0.25s ease;
+}
+.fx-cta:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+/* ---------- Cinta de tecnologías ---------- */
+.fx-marquee {
+  overflow: hidden;
+  border-block: 1px solid rgb(124 58 237 / 0.2);
+  background: rgb(124 58 237 / 0.05);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.fx-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: fx-marquee 32s linear infinite;
+}
+.fx-marquee:hover .fx-marquee-track {
+  animation-play-state: paused;
+}
+.fx-marquee-item {
+  padding: 0.9rem 1.5rem;
+  white-space: nowrap;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #5b21b6;
+}
+.fx-marquee-item::after {
+  content: "✦";
+  margin-left: 3rem;
+  color: #ec4899;
+}
+html.dark .fx-marquee-item {
+  color: #ddd6fe;
+}
+
+/* ---------- Ventana de terminal ---------- */
+.fx-terminal {
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #0f1020;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: 0 30px 60px -30px rgb(124 58 237 / 0.55);
+}
+.fx-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  background: #181a33;
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+}
+.fx-dot {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+}
+.fx-terminal-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: #e6e6ff;
+}
+.fx-prompt {
+  margin-right: 0.5rem;
+  color: #34d399;
+}
+.fx-out {
+  margin-bottom: 0.4rem;
+  padding-left: 1.1rem;
+  color: #c4b5fd;
+}
+
+/* ---------- Texto de las evidencias (Markdown) ---------- */
+.fx-prose {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #45433f;
+}
+html.dark .fx-prose {
+  color: #ddd9d0;
+}
+.fx-prose > * + * {
+  margin-top: 1rem;
+}
+.fx-prose h2 {
+  margin-top: 2rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #4c1d95;
+}
+.fx-prose h3 {
+  margin-top: 1.5rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #6d28d9;
+}
+html.dark .fx-prose h2 { color: #c4b5fd; }
+html.dark .fx-prose h3 { color: #ddd6fe; }
+.fx-prose ul { list-style: disc; padding-left: 1.4rem; }
+.fx-prose ol { list-style: decimal; padding-left: 1.4rem; }
+.fx-prose li { margin-top: 0.3rem; }
+.fx-prose li::marker { color: #7c3aed; }
+.fx-prose a {
+  color: #6d28d9;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+html.dark .fx-prose a { color: #c4b5fd; }
+.fx-prose img {
+  display: block;
+  max-width: 100%;
+  margin-inline: auto;
+  border-radius: 1rem;
+  border: 1px solid rgb(124 58 237 / 0.2);
+  box-shadow: 0 18px 36px -22px rgb(124 58 237 / 0.45);
+}
+.fx-prose blockquote {
+  padding: 0.6rem 1rem;
+  border-left: 4px solid #7c3aed;
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: rgb(124 58 237 / 0.07);
+}
+.fx-prose code {
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.4rem;
+  background: rgb(124 58 237 / 0.1);
+  font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+.fx-prose pre {
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 1rem;
+  background: #0f1020;
+  color: #e6e6ff;
+}
+.fx-prose pre code {
+  padding: 0;
+  background: none;
+}
+.fx-prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.fx-prose th,
+.fx-prose td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgb(124 58 237 / 0.25);
+  text-align: left;
+}
+.fx-prose th {
+  background: rgb(124 58 237 / 0.1);
+}
+.fx-prose hr {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7c3aed, #ec4899, #06b6d4);
+}

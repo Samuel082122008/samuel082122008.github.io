@@ -200,18 +200,18 @@ export default defineConfig({
 				900: '#222321',
 				950: '#161918',
 			},
-			// Restrained scholarly blue
+			// Violeta vibrante (color principal del sitio)
 			accent: {
-				50: '#eef5f7',
-				100: '#dcebef',
-				200: '#bfd8df',
-				300: '#96bdc9',
-				400: '#679aaa',
-				500: '#497d90',
-				600: '#396779',
-				700: '#2f5363',
-				800: '#294652',
-				900: '#243b45',
+				50: '#f5f3ff',
+				100: '#ede9fe',
+				200: '#ddd6fe',
+				300: '#c4b5fd',
+				400: '#a78bfa',
+				500: '#8b5cf6',
+				600: '#7c3aed',
+				700: '#6d28d9',
+				800: '#5b21b6',
+				900: '#4c1d95',
 			},
 			emerald: {
 				50: '#ecfdf5',
@@ -241,7 +241,7 @@ export default defineConfig({
 		fontFamily: {
 			sans:
 				"'Atkinson Hyperlegible', 'Noto Sans SC', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
-			heading: "'Crimson Pro', Georgia, 'Times New Roman', 'Noto Serif SC', serif",
+			heading: "'Space Grotesk', 'Segoe UI', system-ui, -apple-system, sans-serif",
 			mono:
 				"'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
 		},

@@ -4,13 +4,47 @@ import Layout from "../../layouts/Layout.astro";
 export async function getStaticPaths() {
   const archivos = import.meta.glob("../../evidencias/*.md", { eager: true }) as Record<string, any>;
 
-  return Object.entries(archivos).map(([ruta, mod]) => ({
-    params: { slug: ruta.split("/").pop()!.replace(".md", "") },
-    props: { frontmatter: mod.frontmatter, Content: mod.Content },
+  const todas = Object.entries(archivos).map(([ruta, mod]) => ({
+    slug: ruta.split("/").pop()!.replace(".md", ""),
+    frontmatter: mod.frontmatter,
+    Content: mod.Content,
   }));
+
+  return todas.map((e) => {
+    const hermanas = todas
+      .filter((x) => x.frontmatter.seccion === e.frontmatter.seccion)
+      .sort((a, b) => Number(a.frontmatter.orden ?? 999) - Number(b.frontmatter.orden ?? 999));
+    const i = hermanas.findIndex((x) => x.slug === e.slug);
+
+    return {
+      params: { slug: e.slug },
+      props: {
+        frontmatter: e.frontmatter,
+        Content: e.Content,
+        anterior: i > 0 ? { slug: hermanas[i - 1].slug, titulo: hermanas[i - 1].frontmatter.titulo } : null,
+        siguiente:
+          i < hermanas.length - 1
+            ? { slug: hermanas[i + 1].slug, titulo: hermanas[i + 1].frontmatter.titulo }
+            : null,
+      },
+    };
+  });
 }
 
-const { frontmatter, Content } = Astro.props;
+const { frontmatter, Content, anterior, siguiente } = Astro.props;
+
+const meta: Record<string, { titulo: string; gradiente: string; icono: string }> = {
+  modelado: { titulo: "Modelado", gradiente: "from-violet-500 to-fuchsia-500", icono: "i-ph-tree-structure" },
+  normalizacion: { titulo: "Normalización", gradiente: "from-cyan-500 to-violet-500", icono: "i-ph-table" },
+  sql: { titulo: "SQL", gradiente: "from-emerald-500 to-cyan-500", icono: "i-ph-database" },
+  proyecto: { titulo: "Proyecto", gradiente: "from-amber-500 to-pink-500", icono: "i-ph-rocket-launch" },
+};
+
+const info = meta[frontmatter.seccion] ?? {
+  titulo: String(frontmatter.seccion ?? "Evidencia"),
+  gradiente: "from-violet-500 to-fuchsia-500",
+  icono: "i-ph-file-text",
+};
 ---
 
 <Layout
@@ -19,27 +53,60 @@ const { frontmatter, Content } = Astro.props;
   schemaType="Article"
 >
   <div class="page-stack">
-    <a href="/evidencias" class="action-link glass-control self-start px-3.5">
+    <a href="/evidencias" class="fx-btn self-start">
       <span class="i-ph-arrow-left text-base" aria-hidden="true"></span>
       Volver a Evidencias
     </a>
 
-    <header class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white/60 p-6 shadow-xl dark:border-gray-700 dark:bg-gray-900/60 sm:p-10">
-      <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent-500/25 blur-3xl" aria-hidden="true"></div>
-      <div class="relative">
-        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-accent-700 dark:text-accent-300">{frontmatter.seccion}</p>
-        <h1 class="mt-2 font-heading text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.05] tracking-[-0.03em]">
-          <span class="bg-gradient-to-r from-accent-600 to-sky-500 bg-clip-text text-transparent">{frontmatter.titulo}</span>
-        </h1>
-        {frontmatter.fecha && <p class="entry-meta mt-3 tabular-nums">{frontmatter.fecha}</p>}
-      </div>
+    <header class={`relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br ${info.gradiente} p-8 text-white shadow-2xl sm:p-12`}>
+      <div class="fx-grid-white absolute inset-0 -z-10" aria-hidden="true"></div>
+      <span class={`${info.icono} absolute -right-4 -top-4 -z-10 text-[9rem] opacity-20`} aria-hidden="true"></span>
+
+      <p class="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] backdrop-blur">
+        <span class={info.icono} aria-hidden="true"></span>
+        {info.titulo}
+      </p>
+      <h1 class="mt-4 font-heading text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.03em]">
+        {frontmatter.titulo}
+      </h1>
+      {frontmatter.fecha && (
+        <p class="mt-4 inline-flex items-center gap-2 text-sm font-semibold tabular-nums text-white/85">
+          <span class="i-ph-calendar-blank" aria-hidden="true"></span>
+          {frontmatter.fecha}
+        </p>
+      )}
     </header>
 
-    <article class="space-y-4 rounded-3xl border border-gray-200 bg-white/70 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/60 sm:p-10 [&_p]:body-copy [&_li]:body-copy [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_a]:font-semibold [&_a]:underline [&_img]:rounded-lg [&_img]:border [&_img]:border-gray-200 [&_img]:dark:border-gray-700 [&_h2]:section-heading [&_h2]:pt-4 [&_h3]:entry-title">
+    <article class="fx-panel fx-prose p-6 sm:p-10">
       <Content />
     </article>
 
-    <a href="/evidencias" class="action-link glass-control self-start px-3.5">
+    {(anterior || siguiente) && (
+      <nav class="grid gap-4 sm:grid-cols-2" aria-label="Navegación entre evidencias">
+        {anterior ? (
+          <a href={`/evidencias/${anterior.slug}`} class="fx-card group block p-5 no-underline">
+            <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.12em] text-violet-700 dark:text-violet-300">
+              <span class="i-ph-arrow-left" aria-hidden="true"></span>
+              Anterior
+            </span>
+            <p class="mt-1 font-heading text-lg font-bold text-ink-900 dark:text-paper-50">{anterior.titulo}</p>
+          </a>
+        ) : (
+          <div></div>
+        )}
+        {siguiente ? (
+          <a href={`/evidencias/${siguiente.slug}`} class="fx-card group block p-5 text-right no-underline">
+            <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.12em] text-violet-700 dark:text-violet-300">
+              Siguiente
+              <span class="i-ph-arrow-right" aria-hidden="true"></span>
+            </span>
+            <p class="mt-1 font-heading text-lg font-bold text-ink-900 dark:text-paper-50">{siguiente.titulo}</p>
+          </a>
+        ) : null}
+      </nav>
+    )}
+
+    <a href="/evidencias" class="fx-btn self-start">
       <span class="i-ph-arrow-left text-base" aria-hidden="true"></span>
       Volver a Evidencias
     </a>
