@@ -13,10 +13,10 @@ const entradas = Object.entries(archivos).map(([ruta, mod]) => ({
 }));
 
 const secciones = [
-  { id: "modelado", titulo: "Modelado" },
-  { id: "normalizacion", titulo: "Normalización" },
-  { id: "sql", titulo: "SQL" },
-  { id: "proyecto", titulo: "Proyecto" },
+  { id: "modelado", titulo: "Modelado", icono: "i-ph-tree-structure" },
+  { id: "normalizacion", titulo: "Normalización", icono: "i-ph-table" },
+  { id: "sql", titulo: "SQL", icono: "i-ph-database" },
+  { id: "proyecto", titulo: "Proyecto", icono: "i-ph-rocket-launch" },
 ].map((s) => ({
   ...s,
   entradas: entradas
@@ -33,51 +33,63 @@ const navItems = secciones.map((s) => ({ href: `#${s.id}`, label: s.titulo }));
   schemaType="CollectionPage"
 >
   <div class="page-stack">
-    <header class="page-header">
-      <p class="page-kicker">Bases de Datos 1</p>
-      <h1 class="page-title">Evidencias</h1>
-      <p class="page-description">
-        Acá voy a ir subiendo el trabajo del curso a lo largo del semestre.
-      </p>
+    <header class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white/60 p-6 shadow-xl dark:border-gray-700 dark:bg-gray-900/60 sm:p-10">
+      <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent-500/25 blur-3xl" aria-hidden="true"></div>
+      <div class="relative">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-accent-700 dark:text-accent-300">Bases de Datos 1</p>
+        <h1 class="mt-2 font-heading text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-[1] tracking-[-0.03em]">
+          <span class="bg-gradient-to-r from-accent-600 to-sky-500 bg-clip-text text-transparent">Evidencias</span>
+        </h1>
+        <p class="mt-3 max-w-[40rem] text-[1.0625rem] leading-7 text-gray-700 dark:text-gray-200">
+          Acá voy subiendo el trabajo del curso a lo largo del semestre.
+        </p>
+      </div>
     </header>
 
     <PageJumpNav items={navItems} />
 
-    <div class="space-y-7 sm:space-y-8">
+    <div class="space-y-10">
       {secciones.map((seccion) => (
-        <section id={seccion.id} class="content-section scroll-mt-20 space-y-4">
-          <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
-            <h2 class="section-heading">{seccion.titulo}</h2>
+        <section id={seccion.id} class="scroll-mt-20 space-y-5">
+          <header class="flex items-center justify-between gap-3 border-b border-gray-200 pb-3 dark:border-gray-700">
+            <h2 class="section-heading flex items-center gap-2">
+              <span class={`${seccion.icono} text-accent-600 dark:text-accent-300`} aria-hidden="true"></span>
+              {seccion.titulo}
+            </h2>
+            <span class="rounded-full border border-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:border-gray-700 dark:text-gray-300">
+              {seccion.entradas.length} {seccion.entradas.length === 1 ? "evidencia" : "evidencias"}
+            </span>
           </header>
 
           {seccion.entradas.length === 0 ? (
             <p class="body-copy">Próximamente.</p>
           ) : (
-            <div class="grid gap-4 md:grid-cols-2">
-              {seccion.entradas.map((e) => (
+            <div class="grid gap-5 md:grid-cols-2">
+              {seccion.entradas.map((e, i) => (
                 <a href={`/evidencias/${e.slug}`} class="group block h-full no-underline">
-                  <article class="surface-card-hover flex h-full flex-col">
-                    {e.imagen && (
-                      <img
-                        src={e.imagen}
-                        alt={e.titulo}
-                        loading="lazy"
-                        class="mb-4 aspect-video w-full rounded-lg border border-gray-200 object-cover dark:border-gray-700"
-                      />
+                  <article class="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white/70 shadow-sm transition duration-200 group-hover:-translate-y-1 group-hover:shadow-xl dark:border-gray-700 dark:bg-gray-900/60">
+                    {e.imagen ? (
+                      <img src={e.imagen} alt={e.titulo} loading="lazy" class="aspect-video w-full object-cover" />
+                    ) : (
+                      <div class="flex h-28 items-end bg-gradient-to-br from-accent-500 to-sky-500 p-4">
+                        <span class="font-heading text-4xl font-bold text-white/90">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </div>
                     )}
-                    {e.fecha && (
-                      <p class="entry-meta tabular-nums">{e.fecha}</p>
-                    )}
-                    <h3 class="entry-title mt-1 transition-colors group-hover:text-accent-700 dark:group-hover:text-accent-300">
-                      {e.titulo}
-                    </h3>
-                    {e.resumen && (
-                      <p class="entry-summary mt-2 line-clamp-3">{e.resumen}</p>
-                    )}
-                    <span class="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-semibold text-accent-700 dark:text-accent-300">
-                      Ver más
-                      <span class="i-ph-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></span>
-                    </span>
+                    <div class="flex flex-1 flex-col p-5">
+                      {e.fecha && <p class="entry-meta tabular-nums">{e.fecha}</p>}
+                      <h3 class="entry-title mt-1 transition-colors group-hover:text-accent-700 dark:group-hover:text-accent-300">
+                        {e.titulo}
+                      </h3>
+                      {e.resumen && (
+                        <p class="entry-summary mt-2 line-clamp-3">{e.resumen}</p>
+                      )}
+                      <span class="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-semibold text-accent-700 dark:text-accent-300">
+                        Ver más
+                        <span class="i-ph-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></span>
+                      </span>
+                    </div>
                   </article>
                 </a>
               ))}

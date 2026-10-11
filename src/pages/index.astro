@@ -1,27 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import { getFeaturedPapers } from "../lib/papers";
 import siteConfig from "../side.config";
 import { Image } from "astro:assets";
-
-const showHero = siteConfig.homeBlocks.hero.enabled;
-const showPublications = siteConfig.homeBlocks.publications.enabled;
-const showPosts = siteConfig.homeBlocks.posts.enabled;
-
-const recentPosts = showPosts
-  ? (await getCollection("posts"))
-      .filter((post) => !post.data.draft)
-      .sort(
-        (a, b) =>
-          new Date(b.data.publishedAt).getTime() -
-          new Date(a.data.publishedAt).getTime(),
-      )
-      .slice(0, 3)
-  : [];
-
-const selectedPapers = showPublications ? getFeaturedPapers(3) : [];
-const postsSectionNumber = showPublications ? "02" : "01";
 
 const rawProfileImage = siteConfig.hero.profileImage.trim();
 const profileImageUrl = /^https?:/i.test(rawProfileImage)
@@ -34,70 +14,84 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           : `../${rawProfileImage}`,
         import.meta.url,
       ).href;
-const videoUrl = "https://www.youtube.com/embed/5qxG6ODQw1Q";
-const about = {
-  name: siteConfig.author,
-  bio: siteConfig.hero.subheadline,
-  avatar: profileImageUrl,
-  socialLinks: siteConfig.socialLinks,
-};
 
-// Get affiliations and research interests from config
+const videoUrl = "https://www.youtube.com/embed/5qxG6ODQw1Q";
+
 const affiliations = siteConfig.affiliations || [];
 const researchInterests = siteConfig.researchInterests || [];
 const statusBadge = siteConfig.hero.statusBadge;
-const headline = siteConfig.hero.headline || about.name;
-const profileAlt = siteConfig.hero.profileAlt || about.name;
+const headline = siteConfig.hero.headline || siteConfig.author;
+const profileAlt = siteConfig.hero.profileAlt || siteConfig.author;
+
+const aficiones = [
+  { icono: "i-ph-game-controller", texto: "Videojuegos" },
+  { icono: "i-ph-music-notes", texto: "Música" },
+  { icono: "i-ph-soccer-ball", texto: "Fútbol" },
+  { icono: "i-ph-lightbulb", texto: "Aprender cosas nuevas" },
+];
 ---
 
 <Layout
-  title="Home"
+  title="Presentación"
   description={siteConfig.hero.subheadline}
   schemaType="ProfilePage"
 >
   <div class="page-stack">
-    {showHero && (
-      <section class="relative border-y border-paper-300/90 py-8 dark:border-ink-700 sm:py-10 lg:py-12">
-      <div class="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_12rem] lg:items-start lg:gap-12">
+    <!-- HERO -->
+    <section class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white/60 p-6 shadow-xl dark:border-gray-700 dark:bg-gray-900/60 sm:p-10 lg:p-12">
+      <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent-500/25 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-sky-500/20 blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_16rem]">
         <div class="min-w-0">
-          <h1 class="max-w-4xl font-heading text-[clamp(2.5rem,5vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-gray-900 dark:text-gray-50">
+          {statusBadge && (
+            <p class="inline-flex items-center gap-2 rounded-full border border-emerald-300/60 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-emerald-700 dark:text-emerald-300">
+              <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+              {statusBadge}
+            </p>
+          )}
+
+          <p class="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-accent-700 dark:text-accent-300">
             {headline}
+          </p>
+
+          <h1 class="mt-2 font-heading text-[clamp(2.5rem,5.5vw,4.25rem)] font-bold leading-[1] tracking-[-0.03em]">
+            <span class="bg-gradient-to-r from-accent-600 to-sky-500 bg-clip-text text-transparent">
+              {siteConfig.author}
+            </span>
           </h1>
 
           {affiliations.length > 0 && (
-            <div class="mt-5 border-l-2 border-accent-500 pl-4">
-              <div class="space-y-1">
-                {affiliations.map((aff) => (
-                  <p class="text-base leading-7 text-gray-600 dark:text-gray-300">
-                    {aff.role}
-                    {aff.department && <span>, {aff.department}</span>}
-                    {aff.url ? (
-                      <a
-                        href={aff.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="ml-1 font-semibold text-accent-700 underline decoration-accent-300 underline-offset-4 transition-colors hover:text-accent-900 dark:text-accent-300 dark:decoration-accent-700 dark:hover:text-accent-100"
-                      >
-                        {aff.institution}
-                      </a>
-                    ) : (
-                      <span>, {aff.institution}</span>
-                    )}
-                  </p>
-                ))}
-              </div>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {affiliations.map((aff) => (
+                <p class="inline-flex flex-wrap items-center gap-x-1.5 rounded-xl border border-gray-200 bg-white/70 px-3 py-2 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-900/60 dark:text-gray-200">
+                  <span class="i-ph-graduation-cap text-lg text-accent-600 dark:text-accent-300" aria-hidden="true"></span>
+                  <span>{aff.role}</span>
+                  {aff.url ? (
+                    <a
+                      href={aff.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-semibold text-accent-700 underline decoration-accent-300 underline-offset-4 hover:text-accent-900 dark:text-accent-300 dark:decoration-accent-700 dark:hover:text-accent-100"
+                    >
+                      {aff.institution}
+                    </a>
+                  ) : (
+                    <span>· {aff.institution}</span>
+                  )}
+                </p>
+              ))}
             </div>
           )}
 
-          <p class="mt-5 max-w-[43rem] text-[1.0625rem] leading-7 text-gray-700 dark:text-gray-200">
-            {about.bio}
+          <p class="mt-5 max-w-[40rem] text-[1.0625rem] leading-7 text-gray-700 dark:text-gray-200">
+            {siteConfig.hero.subheadline}
           </p>
 
           {researchInterests.length > 0 && (
-            <div class="mt-5 flex flex-wrap gap-x-4 gap-y-2" aria-label="Research interests">
-              {researchInterests.map((interest, index) => (
-                <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-gray-600 dark:text-gray-300">
-                  <span class="font-mono text-xs text-accent-600 dark:text-accent-300">{String(index + 1).padStart(2, "0")}</span>
+            <div class="mt-5 flex flex-wrap gap-2" aria-label="Tecnologías de interés">
+              {researchInterests.map((interest) => (
+                <span class="rounded-full border border-accent-300/70 bg-accent-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-accent-800 dark:border-accent-700 dark:text-accent-200">
                   {interest}
                 </span>
               ))}
@@ -105,12 +99,12 @@ const profileAlt = siteConfig.hero.profileAlt || about.name;
           )}
 
           <div class="mt-6 flex flex-wrap gap-2">
-            {about.socialLinks.slice(0, 5).map((link) => (
+            {siteConfig.socialLinks.slice(0, 5).map((link) => (
               <a
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="glass-control inline-flex min-h-11 items-center justify-center gap-2 px-3.5 py-2 text-sm font-semibold text-gray-700 no-underline transition-colors duration-150 hover:text-accent-800 dark:text-gray-200 dark:hover:text-accent-200"
+                class="glass-control inline-flex min-h-11 items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 no-underline transition-colors duration-150 hover:text-accent-800 dark:text-gray-200 dark:hover:text-accent-200"
                 aria-label={link.label}
               >
                 <span class={`${link.icon} text-base`} aria-hidden="true" />
@@ -120,87 +114,112 @@ const profileAlt = siteConfig.hero.profileAlt || about.name;
           </div>
         </div>
 
-        <aside class="mx-auto w-full max-w-48 lg:mx-0" aria-label="Profile">
-          <div class="relative overflow-hidden rounded-lg border border-paper-300 bg-white/64 p-1.5 dark:border-ink-700 dark:bg-ink-900/68">
+        <aside class="mx-auto w-full max-w-64" aria-label="Foto de perfil">
+          <div class="rounded-3xl bg-gradient-to-br from-accent-500 via-sky-500 to-emerald-400 p-1 shadow-2xl">
+            <div class="overflow-hidden rounded-[1.35rem] bg-white dark:bg-gray-900">
               <Image
-                src={about.avatar}
+                src={profileImageUrl}
                 alt={profileAlt}
                 width={siteConfig.hero.profileImageWidth || 160}
                 height={siteConfig.hero.profileImageHeight || 160}
                 layout="constrained"
                 fit="cover"
                 priority
-                class="aspect-square h-auto w-full rounded-md object-cover"
+                class="aspect-square h-auto w-full object-cover"
               />
+            </div>
           </div>
-          {statusBadge && (
-            <p class="mt-4 flex items-center justify-center gap-2 text-center text-xs font-semibold uppercase tracking-[0.1em] text-emerald-700 dark:text-emerald-300 lg:justify-start">
-              <span class="h-2 w-2 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-900/40" aria-hidden="true"></span>
-              {statusBadge}
-            </p>
-          )}
         </aside>
-      </div>
-      </section>
-    )}
-
-    <section class="content-section space-y-4" aria-labelledby="presentacion">
-      <div class="border-b border-gray-300 pb-4 dark:border-gray-700">
-        <p class="section-kicker">01 / Presentación</p>
-        <h2 id="presentacion" class="section-heading">Un poco sobre mí</h2>
-      </div>
-
-      <div class="aspect-video w-full overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700">
-        <iframe
-          class="h-full w-full"
-          src={videoUrl}
-          title="Video de presentación"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-
-      <div class="space-y-5">
-        <div class="space-y-3">
-          <p class="body-copy">
-            Soy Samuel, tengo 18 años y me gradué del Colegio Corazonista. Actualmente
-            soy estudiante de Ingeniería de Sistemas en la Universidad El Bosque.
-            Me gusta todo lo relacionado con la tecnología y la programación, y
-            durante la carrera he ido descubriendo diferentes áreas que me llaman
-            la atención y en las que quiero seguir aprendiendo.
-          </p>
-          <p class="body-copy">
-            Fuera de la universidad me gusta jugar videojuegos, escuchar música,
-            y ver y jugar fútbol. También disfruto aprender cosas nuevas.
-          </p>
-        </div>
-
-        <div class="border-l-2 border-accent-500 pl-4 space-y-2">
-          <h3 class="entry-title text-base">Mi objetivo este semestre</h3>
-          <p class="body-copy">
-            Quiero aprender y entender mejor todo lo relacionado con Bases de
-            Datos 1, especialmente cómo organizar y manejar la información de
-            manera correcta. También quiero ser más constante con mis trabajos,
-            mejorar mis habilidades y poder aplicar lo aprendido en futuros
-            proyectos de mi carrera.
-            Este semestre quiero seguir mejorando como estudiante, 
-            ser más organizado con mis trabajos y aprovechar las materias
-            para aprender cosas que realmente pueda utilizar más adelante.
-            Espero que al terminar el semestre pueda mirar atrás y notar que
-            no solo cumplí con las actividades, sino que también adquirí nuevos
-            conocimientos y mejoré mis habilidades.
-          </p>
-        </div>
       </div>
     </section>
 
+    <!-- PRESENTACIÓN -->
+    <section class="space-y-6" aria-labelledby="presentacion">
+      <div class="border-b border-gray-200 pb-4 dark:border-gray-700">
+        <p class="section-kicker">Presentación</p>
+        <h2 id="presentacion" class="section-heading">Un poco sobre mí</h2>
+      </div>
+
+      <div class="overflow-hidden rounded-3xl border border-gray-200 bg-black shadow-2xl dark:border-gray-700">
+        <div class="aspect-video w-full">
+          <iframe
+            class="h-full w-full"
+            src={videoUrl}
+            title="Video de presentación"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="space-y-3 rounded-2xl border border-gray-200 bg-white/70 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/60">
+          <div class="flex items-center gap-3">
+            <span class="i-ph-user-circle text-3xl text-accent-600 dark:text-accent-300" aria-hidden="true"></span>
+            <h3 class="entry-title">Quién soy</h3>
+          </div>
+          <p class="body-copy">
+            Soy Samuel, tengo 18 años y me gradué del Colegio Corazonista.
+            Actualmente soy estudiante de Ingeniería de Sistemas en la
+            Universidad El Bosque.
+          </p>
+          <p class="body-copy">
+            Me gusta todo lo relacionado con la tecnología y la programación, y
+            durante la carrera he ido descubriendo diferentes áreas que me
+            llaman la atención y en las que quiero seguir aprendiendo.
+          </p>
+        </article>
+
+        <article class="space-y-3 rounded-2xl border border-gray-200 bg-white/70 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/60">
+          <div class="flex items-center gap-3">
+            <span class="i-ph-target text-3xl text-accent-600 dark:text-accent-300" aria-hidden="true"></span>
+            <h3 class="entry-title">Mi objetivo este semestre</h3>
+          </div>
+          <p class="body-copy">
+            Quiero aprender y entender mejor todo lo relacionado con Bases de
+            Datos 1, especialmente cómo organizar y manejar la información de
+            manera correcta.
+          </p>
+          <p class="body-copy">
+            También quiero ser más constante con mis trabajos, mejorar mis
+            habilidades y poder aplicar lo aprendido en futuros proyectos de mi
+            carrera.
+          </p>
+        </article>
+      </div>
+
+      <article class="rounded-2xl border border-gray-200 bg-white/70 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/60">
+        <div class="flex items-center gap-3">
+          <span class="i-ph-sparkle text-3xl text-accent-600 dark:text-accent-300" aria-hidden="true"></span>
+          <h3 class="entry-title">Fuera de la universidad</h3>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-3">
+          {aficiones.map((a) => (
+            <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
+              <span class={`${a.icono} text-lg text-accent-600 dark:text-accent-300`} aria-hidden="true"></span>
+              {a.texto}
+            </span>
+          ))}
+        </div>
+      </article>
+    </section>
+
+    <!-- BOTÓN A EVIDENCIAS -->
+    <a
+      href="/evidencias"
+      class="group relative block overflow-hidden rounded-3xl bg-gradient-to-r from-accent-600 to-sky-600 p-8 text-white no-underline shadow-xl transition duration-200 hover:shadow-2xl sm:p-10"
+    >
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-white/80">Bases de Datos 1</p>
+          <p class="mt-1 font-heading text-2xl font-semibold sm:text-3xl">Mira mis evidencias del semestre</p>
+          <p class="mt-1 text-white/85">Modelado, normalización, SQL y proyecto.</p>
+        </div>
+        <span class="inline-flex items-center gap-2 self-start rounded-full bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur transition group-hover:bg-white/25 sm:self-auto">
+          Ver evidencias
+          <span class="i-ph-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></span>
+        </span>
+      </div>
+    </a>
   </div>
 </Layout>
-
-<script>
-  import { setupAbstractToggles } from "../scripts/ui";
-
-  document.addEventListener("astro:page-load", () => {
-    setupAbstractToggles();
-  });
-</script>

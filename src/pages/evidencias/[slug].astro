@@ -24,13 +24,18 @@ const { frontmatter, Content } = Astro.props;
       Volver a Evidencias
     </a>
 
-    <header class="page-header">
-      <p class="page-kicker">{frontmatter.seccion}</p>
-      <h1 class="page-title">{frontmatter.titulo}</h1>
-      {frontmatter.fecha && <p class="entry-meta tabular-nums">{frontmatter.fecha}</p>}
+    <header class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white/60 p-6 shadow-xl dark:border-gray-700 dark:bg-gray-900/60 sm:p-10">
+      <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent-500/25 blur-3xl" aria-hidden="true"></div>
+      <div class="relative">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-accent-700 dark:text-accent-300">{frontmatter.seccion}</p>
+        <h1 class="mt-2 font-heading text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.05] tracking-[-0.03em]">
+          <span class="bg-gradient-to-r from-accent-600 to-sky-500 bg-clip-text text-transparent">{frontmatter.titulo}</span>
+        </h1>
+        {frontmatter.fecha && <p class="entry-meta mt-3 tabular-nums">{frontmatter.fecha}</p>}
+      </div>
     </header>
 
-    <article class="space-y-4 [&_p]:body-copy [&_li]:body-copy [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_a]:font-semibold [&_a]:underline [&_img]:rounded-lg [&_img]:border [&_img]:border-gray-200 [&_img]:dark:border-gray-700 [&_h2]:section-heading [&_h3]:entry-title">
+    <article class="space-y-4 rounded-3xl border border-gray-200 bg-white/70 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/60 sm:p-10 [&_p]:body-copy [&_li]:body-copy [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_a]:font-semibold [&_a]:underline [&_img]:rounded-lg [&_img]:border [&_img]:border-gray-200 [&_img]:dark:border-gray-700 [&_h2]:section-heading [&_h2]:pt-4 [&_h3]:entry-title">
       <Content />
     </article>
 
