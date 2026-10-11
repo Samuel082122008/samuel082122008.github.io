@@ -2,12 +2,52 @@
 import Layout from "../layouts/Layout.astro";
 import PageJumpNav from "../components/PageJumpNav.astro";
 
-const navItems = [
-  { href: "#modelado", label: "Modelado" },
-  { href: "#normalizacion", label: "Normalización" },
-  { href: "#sql", label: "SQL" },
-  { href: "#proyecto", label: "Proyecto" },
+interface Entrada {
+  titulo: string;
+  fecha?: string;
+  texto: string[]; // cada elemento es un párrafo
+  imagenes?: { src: string; alt: string }[];
+}
+
+const secciones: { id: string; titulo: string; entradas: Entrada[] }[] = [
+  {
+    id: "modelado",
+    titulo: "Modelado",
+    entradas: [
+      {
+        titulo: "Mi primer modelo entidad-relación",
+        fecha: "10 oct 2026",
+        texto: [
+          "Acá va el primer párrafo explicando qué hiciste.",
+          "Acá va el segundo párrafo, con lo que aprendiste.",
+        ],
+        imagenes: [
+          // { src: "/img/modelado-1.png", alt: "Diagrama entidad-relación" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "normalizacion",
+    titulo: "Normalización",
+    entradas: [],
+  },
+  {
+    id: "sql",
+    titulo: "SQL",
+    entradas: [],
+  },
+  {
+    id: "proyecto",
+    titulo: "Proyecto",
+    entradas: [],
+  },
 ];
+
+const navItems = secciones.map((s) => ({
+  href: `#${s.id}`,
+  label: s.titulo,
+}));
 ---
 
 <Layout
@@ -19,39 +59,55 @@ const navItems = [
     <header class="page-header">
       <p class="page-kicker">Bases de Datos 1</p>
       <h1 class="page-title">Evidencias</h1>
-      <p class="page-description">Acá voy a ir subiendo el trabajo del curso a lo largo del semestre.</p>
+      <p class="page-description">
+        Acá voy a ir subiendo el trabajo del curso a lo largo del semestre.
+      </p>
     </header>
 
     <PageJumpNav items={navItems} />
 
     <div class="space-y-7 sm:space-y-8">
-      <section id="modelado" class="content-section scroll-mt-20 space-y-4">
-        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
-          <h2 class="section-heading">Modelado</h2>
-        </header>
-        <p class="body-copy">Próximamente.</p>
-      </section>
+      {secciones.map((seccion) => (
+        <section id={seccion.id} class="content-section scroll-mt-20 space-y-4">
+          <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
+            <h2 class="section-heading">{seccion.titulo}</h2>
+          </header>
 
-      <section id="normalizacion" class="content-section scroll-mt-20 space-y-4">
-        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
-          <h2 class="section-heading">Normalización</h2>
-        </header>
-        <p class="body-copy">Próximamente.</p>
-      </section>
+          {seccion.entradas.length === 0 ? (
+            <p class="body-copy">Próximamente.</p>
+          ) : (
+            <div class="space-y-4">
+              {seccion.entradas.map((entrada) => (
+                <article class="surface-card space-y-3">
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 class="entry-title">{entrada.titulo}</h3>
+                    {entrada.fecha && (
+                      <p class="entry-meta tabular-nums">{entrada.fecha}</p>
+                    )}
+                  </div>
 
-      <section id="sql" class="content-section scroll-mt-20 space-y-4">
-        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
-          <h2 class="section-heading">SQL</h2>
-        </header>
-        <p class="body-copy">Próximamente.</p>
-      </section>
+                  {entrada.texto.map((parrafo) => (
+                    <p class="body-copy">{parrafo}</p>
+                  ))}
 
-      <section id="proyecto" class="content-section scroll-mt-20 space-y-4">
-        <header class="border-b border-gray-200 pb-3 dark:border-gray-700">
-          <h2 class="section-heading">Proyecto</h2>
-        </header>
-        <p class="body-copy">Próximamente.</p>
-      </section>
+                  {entrada.imagenes && entrada.imagenes.length > 0 && (
+                    <div class="grid gap-3 sm:grid-cols-2">
+                      {entrada.imagenes.map((img) => (
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          loading="lazy"
+                          class="w-full rounded-lg border border-gray-200 dark:border-gray-700"
+                        />
+                      ))}
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+      ))}
     </div>
   </div>
 </Layout>
