@@ -1,44 +1,39 @@
 /* =========================================================
    Estilo personal del portafolio de Samuel
+   Paleta: naranja #ea580c · ámbar #f59e0b · amarillo #facc15 · rojo cálido #dc2626
    ========================================================= */
 
-:root {
-  --fx-violet: #7c3aed;
-  --fx-pink: #ec4899;
-  --fx-cyan: #06b6d4;
-}
-
-/* ---------- Vidrio y bordes en tonos violeta ---------- */
+/* ---------- Vidrio y bordes en tonos naranja ---------- */
 html:root {
-  --glass-control-hover: rgb(237 233 254 / 0.9);
-  --glass-control-pressed: rgb(221 214 254 / 0.9);
-  --glass-active: rgb(237 233 254 / 0.85);
-  --glass-border-accent: rgb(124 58 237 / 0.4);
-  --glass-control-border: rgb(91 33 182 / 0.16);
-  --glass-control-border-hover: rgb(91 33 182 / 0.34);
+  --glass-control-hover: rgb(255 237 213 / 0.9);
+  --glass-control-pressed: rgb(254 215 170 / 0.9);
+  --glass-active: rgb(255 237 213 / 0.85);
+  --glass-border-accent: rgb(234 88 12 / 0.4);
+  --glass-control-border: rgb(154 52 18 / 0.16);
+  --glass-control-border-hover: rgb(154 52 18 / 0.34);
 }
 html.dark:root {
-  --glass-control-hover: rgb(76 29 149 / 0.45);
-  --glass-control-pressed: rgb(91 33 182 / 0.55);
-  --glass-active: rgb(91 33 182 / 0.5);
-  --glass-border-accent: rgb(167 139 250 / 0.55);
+  --glass-control-hover: rgb(124 45 18 / 0.45);
+  --glass-control-pressed: rgb(154 52 18 / 0.55);
+  --glass-active: rgb(154 52 18 / 0.5);
+  --glass-border-accent: rgb(253 186 116 / 0.55);
   --glass-control-border: rgb(255 255 255 / 0.12);
-  --glass-control-border-hover: rgb(196 181 253 / 0.4);
+  --glass-control-border-hover: rgb(253 186 116 / 0.4);
 }
 
 /* ---------- Fondo de toda la página ---------- */
 html body {
   background-image:
-    radial-gradient(42rem 30rem at 92% -6%, rgb(124 58 237 / 0.16), transparent 70%),
-    radial-gradient(36rem 28rem at -6% 24%, rgb(236 72 153 / 0.1), transparent 70%),
-    radial-gradient(38rem 30rem at 62% 108%, rgb(6 182 212 / 0.12), transparent 70%);
+    radial-gradient(42rem 30rem at 92% -6%, rgb(249 115 22 / 0.16), transparent 70%),
+    radial-gradient(36rem 28rem at -6% 24%, rgb(245 158 11 / 0.13), transparent 70%),
+    radial-gradient(38rem 30rem at 62% 108%, rgb(250 204 21 / 0.14), transparent 70%);
   background-attachment: fixed;
 }
 html.dark:root body {
   background-image:
-    radial-gradient(42rem 30rem at 92% -6%, rgb(124 58 237 / 0.28), transparent 70%),
-    radial-gradient(36rem 28rem at -6% 24%, rgb(236 72 153 / 0.16), transparent 70%),
-    radial-gradient(38rem 30rem at 62% 108%, rgb(6 182 212 / 0.16), transparent 70%);
+    radial-gradient(42rem 30rem at 92% -6%, rgb(249 115 22 / 0.22), transparent 70%),
+    radial-gradient(36rem 28rem at -6% 24%, rgb(245 158 11 / 0.14), transparent 70%),
+    radial-gradient(38rem 30rem at 62% 108%, rgb(250 204 21 / 0.08), transparent 70%);
 }
 @media (max-width: 767px) {
   html body {
@@ -48,17 +43,26 @@ html.dark:root body {
 
 /* ---------- Selección y foco ---------- */
 html ::selection {
-  background: rgb(167 139 250 / 0.5);
-  color: #1e1b4b;
+  background: rgb(251 191 36 / 0.5);
+  color: #431407;
 }
 html.dark ::selection {
   color: #ffffff;
 }
 html :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline-color: #7c3aed;
+  outline-color: #ea580c;
 }
 html.dark:root :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline-color: #c4b5fd;
+  outline-color: #fdba74;
+}
+html .theme-switch-button:focus-visible {
+  box-shadow: inset 0 0 0 2px #ea580c !important;
+}
+html.dark .theme-switch-button:focus-visible {
+  box-shadow: inset 0 0 0 2px #fdba74 !important;
+}
+html .theme-switch-icon-moon {
+  color: #c2410c;
 }
 
 /* ---------- Barra superior ---------- */
@@ -69,15 +73,15 @@ html.dark:root :where(a, button, input, select, textarea, [tabindex]):focus-visi
   right: 0;
   bottom: -1px;
   height: 2px;
-  background: linear-gradient(90deg, var(--fx-violet), var(--fx-pink), var(--fx-cyan));
-  opacity: 0.85;
+  background: linear-gradient(90deg, #ea580c, #f59e0b, #facc15);
+  opacity: 0.9;
   pointer-events: none;
 }
 html .site-monogram-glass {
-  background: linear-gradient(135deg, var(--fx-violet), var(--fx-pink));
+  background: linear-gradient(135deg, #ea580c, #f59e0b);
   border-color: transparent;
   color: #ffffff !important;
-  box-shadow: 0 6px 16px -6px rgb(124 58 237 / 0.7);
+  box-shadow: 0 6px 16px -6px rgb(234 88 12 / 0.7);
 }
 
 /* ---------- Animaciones ---------- */
@@ -113,7 +117,7 @@ html .site-monogram-glass {
 .fx-float { animation: fx-float 6s ease-in-out infinite; }
 .fx-float-slow { animation: fx-float 9s ease-in-out infinite; }
 .fx-pulse { animation: fx-pulse 2s ease-in-out infinite; }
-.fx-blink { animation: fx-blink 1s steps(1) infinite; color: #ec4899; }
+.fx-blink { animation: fx-blink 1s steps(1) infinite; color: #f97316; }
 .fx-rise {
   opacity: 0;
   animation: fx-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -137,7 +141,7 @@ html .site-monogram-glass {
 
 /* ---------- Texto con degradado animado ---------- */
 .fx-gradient-text {
-  background-image: linear-gradient(90deg, #7c3aed, #ec4899, #06b6d4, #7c3aed);
+  background-image: linear-gradient(90deg, #ea580c, #f59e0b, #dc2626, #ea580c);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -153,14 +157,14 @@ html .site-monogram-glass {
   filter: blur(70px);
   pointer-events: none;
 }
-.fx-blob-violet { background: rgb(124 58 237 / 0.35); }
-.fx-blob-pink { background: rgb(236 72 153 / 0.28); }
-.fx-blob-cyan { background: rgb(6 182 212 / 0.28); }
+.fx-blob-1 { background: rgb(249 115 22 / 0.35); }
+.fx-blob-2 { background: rgb(245 158 11 / 0.3); }
+.fx-blob-3 { background: rgb(250 204 21 / 0.3); }
 
 .fx-grid {
   background-image:
-    linear-gradient(to right, rgb(124 58 237 / 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(124 58 237 / 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgb(234 88 12 / 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(234 88 12 / 0.08) 1px, transparent 1px);
   background-size: 36px 36px;
   -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
   mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
@@ -176,7 +180,7 @@ html .site-monogram-glass {
 
 /* Aura animada detrás de la foto */
 .fx-ring {
-  background: linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4, #7c3aed);
+  background: linear-gradient(135deg, #ea580c, #f59e0b, #facc15, #ea580c);
   background-size: 300% 300%;
   filter: blur(16px);
   opacity: 0.75;
@@ -187,17 +191,17 @@ html .site-monogram-glass {
 .fx-frame {
   padding: 4px;
   border-radius: 1.6rem;
-  background: linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4);
-  box-shadow: 0 30px 60px -30px rgb(124 58 237 / 0.6);
+  background: linear-gradient(135deg, #ea580c, #f59e0b, #facc15);
+  box-shadow: 0 30px 60px -30px rgb(234 88 12 / 0.6);
 }
 
 /* ---------- Tarjetas ---------- */
 .fx-card,
 .fx-panel {
   border-radius: 1.25rem;
-  border: 1px solid rgb(124 58 237 / 0.16);
+  border: 1px solid rgb(234 88 12 / 0.16);
   background: rgb(255 255 255 / 0.7);
-  box-shadow: 0 1px 2px rgb(34 35 33 / 0.05), 0 14px 30px -22px rgb(124 58 237 / 0.35);
+  box-shadow: 0 1px 2px rgb(34 35 33 / 0.05), 0 14px 30px -22px rgb(234 88 12 / 0.35);
 }
 .fx-card {
   overflow: hidden;
@@ -205,8 +209,8 @@ html .site-monogram-glass {
 }
 .fx-card:hover {
   transform: translateY(-5px);
-  border-color: rgb(124 58 237 / 0.45);
-  box-shadow: 0 24px 44px -22px rgb(124 58 237 / 0.5);
+  border-color: rgb(234 88 12 / 0.45);
+  box-shadow: 0 24px 44px -22px rgb(234 88 12 / 0.5);
 }
 html.dark .fx-card,
 html.dark .fx-panel {
@@ -214,7 +218,7 @@ html.dark .fx-panel {
   border-color: rgb(255 255 255 / 0.1);
 }
 html.dark .fx-card:hover {
-  border-color: rgb(196 181 253 / 0.45);
+  border-color: rgb(253 186 116 / 0.45);
 }
 
 .fx-icon {
@@ -227,7 +231,7 @@ html.dark .fx-card:hover {
   border-radius: 1rem;
   color: #ffffff;
   font-size: 1.5rem;
-  box-shadow: 0 10px 20px -10px rgb(124 58 237 / 0.7);
+  box-shadow: 0 10px 20px -10px rgb(234 88 12 / 0.7);
 }
 
 .fx-chip {
@@ -236,17 +240,17 @@ html.dark .fx-card:hover {
   gap: 0.4rem;
   padding: 0.3rem 0.8rem;
   border-radius: 9999px;
-  border: 1px solid rgb(124 58 237 / 0.3);
-  background: rgb(124 58 237 / 0.08);
-  color: #5b21b6;
+  border: 1px solid rgb(234 88 12 / 0.3);
+  background: rgb(234 88 12 / 0.08);
+  color: #9a3412;
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 html.dark .fx-chip {
-  color: #ddd6fe;
-  border-color: rgb(196 181 253 / 0.3);
+  color: #fed7aa;
+  border-color: rgb(253 186 116 / 0.3);
 }
 
 /* ---------- Botones ---------- */
@@ -257,9 +261,9 @@ html.dark .fx-chip {
   min-height: 2.75rem;
   padding: 0.5rem 1.1rem;
   border-radius: 9999px;
-  border: 1px solid rgb(124 58 237 / 0.3);
+  border: 1px solid rgb(234 88 12 / 0.3);
   background: rgb(255 255 255 / 0.7);
-  color: #5b21b6;
+  color: #9a3412;
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
@@ -267,27 +271,27 @@ html.dark .fx-chip {
 }
 .fx-btn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  background: linear-gradient(135deg, #ea580c, #f59e0b);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 12px 24px -12px rgb(124 58 237 / 0.7);
+  box-shadow: 0 12px 24px -12px rgb(234 88 12 / 0.7);
 }
 html.dark .fx-btn {
   background: rgb(255 255 255 / 0.06);
-  color: #ddd6fe;
+  color: #fed7aa;
   border-color: rgb(255 255 255 / 0.16);
 }
 html.dark .fx-btn:hover {
-  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  background: linear-gradient(135deg, #ea580c, #f59e0b);
   color: #ffffff;
   border-color: transparent;
 }
 
 .fx-cta {
-  background-image: linear-gradient(110deg, #7c3aed, #ec4899, #06b6d4, #7c3aed);
+  background-image: linear-gradient(110deg, #c2410c, #ea580c, #d97706, #c2410c);
   background-size: 300% 100%;
   animation: fx-bgmove 10s ease-in-out infinite;
-  box-shadow: 0 24px 48px -24px rgb(124 58 237 / 0.7);
+  box-shadow: 0 24px 48px -24px rgb(234 88 12 / 0.7);
   transition: transform 0.25s ease;
 }
 .fx-cta:hover {
@@ -297,8 +301,8 @@ html.dark .fx-btn:hover {
 /* ---------- Cinta de tecnologías ---------- */
 .fx-marquee {
   overflow: hidden;
-  border-block: 1px solid rgb(124 58 237 / 0.2);
-  background: rgb(124 58 237 / 0.05);
+  border-block: 1px solid rgb(234 88 12 / 0.2);
+  background: rgb(234 88 12 / 0.05);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -316,31 +320,31 @@ html.dark .fx-btn:hover {
   font-family: "Space Grotesk", system-ui, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #5b21b6;
+  color: #9a3412;
 }
 .fx-marquee-item::after {
   content: "✦";
   margin-left: 3rem;
-  color: #ec4899;
+  color: #f59e0b;
 }
 html.dark .fx-marquee-item {
-  color: #ddd6fe;
+  color: #fed7aa;
 }
 
 /* ---------- Ventana de terminal ---------- */
 .fx-terminal {
   overflow: hidden;
   border-radius: 1.25rem;
-  background: #0f1020;
+  background: #1c1210;
   border: 1px solid rgb(255 255 255 / 0.1);
-  box-shadow: 0 30px 60px -30px rgb(124 58 237 / 0.55);
+  box-shadow: 0 30px 60px -30px rgb(234 88 12 / 0.5);
 }
 .fx-terminal-bar {
   display: flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.75rem 1rem;
-  background: #181a33;
+  background: #2a1a14;
   border-bottom: 1px solid rgb(255 255 255 / 0.08);
 }
 .fx-dot {
@@ -354,16 +358,16 @@ html.dark .fx-marquee-item {
   font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   font-size: 0.9rem;
   line-height: 1.9;
-  color: #e6e6ff;
+  color: #ffedd5;
 }
 .fx-prompt {
   margin-right: 0.5rem;
-  color: #34d399;
+  color: #fbbf24;
 }
 .fx-out {
   margin-bottom: 0.4rem;
   padding-left: 1.1rem;
-  color: #c4b5fd;
+  color: #fdba74;
 }
 
 /* ---------- Texto de las evidencias (Markdown) ---------- */
@@ -384,46 +388,46 @@ html.dark .fx-prose {
   font-size: 1.65rem;
   font-weight: 700;
   line-height: 1.2;
-  color: #4c1d95;
+  color: #7c2d12;
 }
 .fx-prose h3 {
   margin-top: 1.5rem;
   font-family: "Space Grotesk", system-ui, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #6d28d9;
+  color: #c2410c;
 }
-html.dark .fx-prose h2 { color: #c4b5fd; }
-html.dark .fx-prose h3 { color: #ddd6fe; }
+html.dark .fx-prose h2 { color: #fdba74; }
+html.dark .fx-prose h3 { color: #fed7aa; }
 .fx-prose ul { list-style: disc; padding-left: 1.4rem; }
 .fx-prose ol { list-style: decimal; padding-left: 1.4rem; }
 .fx-prose li { margin-top: 0.3rem; }
-.fx-prose li::marker { color: #7c3aed; }
+.fx-prose li::marker { color: #ea580c; }
 .fx-prose a {
-  color: #6d28d9;
+  color: #c2410c;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-html.dark .fx-prose a { color: #c4b5fd; }
+html.dark .fx-prose a { color: #fdba74; }
 .fx-prose img {
   display: block;
   max-width: 100%;
   margin-inline: auto;
   border-radius: 1rem;
-  border: 1px solid rgb(124 58 237 / 0.2);
-  box-shadow: 0 18px 36px -22px rgb(124 58 237 / 0.45);
+  border: 1px solid rgb(234 88 12 / 0.2);
+  box-shadow: 0 18px 36px -22px rgb(234 88 12 / 0.45);
 }
 .fx-prose blockquote {
   padding: 0.6rem 1rem;
-  border-left: 4px solid #7c3aed;
+  border-left: 4px solid #ea580c;
   border-radius: 0 0.75rem 0.75rem 0;
-  background: rgb(124 58 237 / 0.07);
+  background: rgb(234 88 12 / 0.07);
 }
 .fx-prose code {
   padding: 0.1rem 0.4rem;
   border-radius: 0.4rem;
-  background: rgb(124 58 237 / 0.1);
+  background: rgb(234 88 12 / 0.1);
   font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   font-size: 0.9em;
 }
@@ -431,8 +435,8 @@ html.dark .fx-prose a { color: #c4b5fd; }
   padding: 1rem;
   overflow-x: auto;
   border-radius: 1rem;
-  background: #0f1020;
-  color: #e6e6ff;
+  background: #1c1210;
+  color: #ffedd5;
 }
 .fx-prose pre code {
   padding: 0;
@@ -447,14 +451,14 @@ html.dark .fx-prose a { color: #c4b5fd; }
 .fx-prose th,
 .fx-prose td {
   padding: 0.5rem 0.75rem;
-  border: 1px solid rgb(124 58 237 / 0.25);
+  border: 1px solid rgb(234 88 12 / 0.25);
   text-align: left;
 }
 .fx-prose th {
-  background: rgb(124 58 237 / 0.1);
+  background: rgb(234 88 12 / 0.1);
 }
 .fx-prose hr {
   border: 0;
   height: 2px;
-  background: linear-gradient(90deg, #7c3aed, #ec4899, #06b6d4);
+  background: linear-gradient(90deg, #ea580c, #f59e0b, #facc15);
 }

@@ -34,15 +34,15 @@ export async function getStaticPaths() {
 const { frontmatter, Content, anterior, siguiente } = Astro.props;
 
 const meta: Record<string, { titulo: string; gradiente: string; icono: string }> = {
-  modelado: { titulo: "Modelado", gradiente: "from-violet-500 to-fuchsia-500", icono: "i-ph-tree-structure" },
-  normalizacion: { titulo: "Normalización", gradiente: "from-cyan-500 to-violet-500", icono: "i-ph-table" },
-  sql: { titulo: "SQL", gradiente: "from-emerald-500 to-cyan-500", icono: "i-ph-database" },
-  proyecto: { titulo: "Proyecto", gradiente: "from-amber-500 to-pink-500", icono: "i-ph-rocket-launch" },
+  modelado: { titulo: "Modelado", gradiente: "from-orange-600 to-red-500", icono: "i-ph-tree-structure" },
+  normalizacion: { titulo: "Normalización", gradiente: "from-amber-600 to-orange-500", icono: "i-ph-table" },
+  sql: { titulo: "SQL", gradiente: "from-yellow-600 to-amber-500", icono: "i-ph-database" },
+  proyecto: { titulo: "Proyecto", gradiente: "from-rose-500 to-orange-500", icono: "i-ph-rocket-launch" },
 };
 
 const info = meta[frontmatter.seccion] ?? {
   titulo: String(frontmatter.seccion ?? "Evidencia"),
-  gradiente: "from-violet-500 to-fuchsia-500",
+  gradiente: "from-orange-600 to-amber-500",
   icono: "i-ph-file-text",
 };
 ---
@@ -85,7 +85,7 @@ const info = meta[frontmatter.seccion] ?? {
       <nav class="grid gap-4 sm:grid-cols-2" aria-label="Navegación entre evidencias">
         {anterior ? (
           <a href={`/evidencias/${anterior.slug}`} class="fx-card group block p-5 no-underline">
-            <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.12em] text-violet-700 dark:text-violet-300">
+            <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.12em] text-accent-700 dark:text-accent-300">
               <span class="i-ph-arrow-left" aria-hidden="true"></span>
               Anterior
             </span>
@@ -96,7 +96,7 @@ const info = meta[frontmatter.seccion] ?? {
         )}
         {siguiente ? (
           <a href={`/evidencias/${siguiente.slug}`} class="fx-card group block p-5 text-right no-underline">
-            <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.12em] text-violet-700 dark:text-violet-300">
+            <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.12em] text-accent-700 dark:text-accent-300">
               Siguiente
               <span class="i-ph-arrow-right" aria-hidden="true"></span>
             </span>

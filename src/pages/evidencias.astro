@@ -18,28 +18,28 @@ const secciones = [
     titulo: "Modelado",
     icono: "i-ph-tree-structure",
     descripcion: "Diagramas y modelos entidad-relación.",
-    gradiente: "from-violet-500 to-fuchsia-500",
+    gradiente: "from-orange-600 to-red-500",
   },
   {
     id: "normalizacion",
     titulo: "Normalización",
     icono: "i-ph-table",
     descripcion: "Del modelo hasta la tercera forma normal.",
-    gradiente: "from-cyan-500 to-violet-500",
+    gradiente: "from-amber-600 to-orange-500",
   },
   {
     id: "sql",
     titulo: "SQL",
     icono: "i-ph-database",
     descripcion: "Consultas y práctica con bases de datos.",
-    gradiente: "from-emerald-500 to-cyan-500",
+    gradiente: "from-yellow-600 to-amber-500",
   },
   {
     id: "proyecto",
     titulo: "Proyecto",
     icono: "i-ph-rocket-launch",
     descripcion: "El proyecto final del curso.",
-    gradiente: "from-amber-500 to-pink-500",
+    gradiente: "from-rose-500 to-orange-500",
   },
 ].map((s) => ({
   ...s,
@@ -58,10 +58,10 @@ const total = entradas.length;
   schemaType="CollectionPage"
 >
   <div class="page-stack">
-    <header class="relative isolate overflow-hidden rounded-[2rem] border border-violet-200/70 bg-white/55 p-6 shadow-2xl dark:border-white/10 dark:bg-ink-900/50 sm:p-10">
+    <header class="relative isolate overflow-hidden rounded-[2rem] border border-accent-200/70 bg-white/55 p-6 shadow-2xl dark:border-white/10 dark:bg-ink-900/50 sm:p-10">
       <div class="fx-grid absolute inset-0 -z-10" aria-hidden="true"></div>
-      <div class="fx-blob fx-blob-violet fx-float -right-16 -top-16 -z-10 h-64 w-64" aria-hidden="true"></div>
-      <div class="fx-blob fx-blob-cyan fx-float-slow -bottom-20 left-10 -z-10 h-52 w-52" aria-hidden="true"></div>
+      <div class="fx-blob fx-blob-1 fx-float -right-16 -top-16 -z-10 h-64 w-64" aria-hidden="true"></div>
+      <div class="fx-blob fx-blob-3 fx-float-slow -bottom-20 left-10 -z-10 h-52 w-52" aria-hidden="true"></div>
 
       <div class="relative">
         <p class="fx-chip fx-rise">Bases de Datos 1</p>
@@ -71,7 +71,7 @@ const total = entradas.length;
         <p class="fx-rise fx-d2 mt-4 max-w-[40rem] text-[1.0625rem] leading-7 text-ink-700 dark:text-paper-200">
           Acá voy subiendo el trabajo del curso a lo largo del semestre.
         </p>
-        <p class="fx-rise fx-d3 mt-4 text-sm font-bold text-violet-700 dark:text-violet-300">
+        <p class="fx-rise fx-d3 mt-4 text-sm font-bold text-accent-700 dark:text-accent-300">
           {total} {total === 1 ? "evidencia publicada" : "evidencias publicadas"}
         </p>
       </div>
@@ -82,14 +82,14 @@ const total = entradas.length;
     <div class="space-y-12">
       {secciones.map((seccion, n) => (
         <section id={seccion.id} class="fx-reveal scroll-mt-24 space-y-6">
-          <header class="flex flex-wrap items-center justify-between gap-3 border-b border-violet-200/60 pb-4 dark:border-white/10">
+          <header class="flex flex-wrap items-center justify-between gap-3 border-b border-accent-200/60 pb-4 dark:border-white/10">
             <div class="flex items-center gap-4">
               <span class={`fx-icon bg-gradient-to-br ${seccion.gradiente}`}>
                 <span class={seccion.icono} aria-hidden="true"></span>
               </span>
               <div>
                 <h2 class="section-heading">
-                  <span class="mr-2 font-mono text-sm text-violet-600 dark:text-violet-300">{String(n + 1).padStart(2, "0")}</span>{seccion.titulo}
+                  <span class="mr-2 font-mono text-sm text-accent-600 dark:text-accent-300">{String(n + 1).padStart(2, "0")}</span>{seccion.titulo}
                 </h2>
                 <p class="text-sm text-ink-600 dark:text-paper-300">{seccion.descripcion}</p>
               </div>
@@ -100,8 +100,8 @@ const total = entradas.length;
           </header>
 
           {seccion.entradas.length === 0 ? (
-            <div class="flex items-center gap-3 rounded-2xl border border-dashed border-violet-300/70 p-6 text-ink-600 dark:border-white/20 dark:text-paper-300">
-              <span class="i-ph-hourglass-medium text-2xl text-violet-500" aria-hidden="true"></span>
+            <div class="flex items-center gap-3 rounded-2xl border border-dashed border-accent-300/70 p-6 text-ink-600 dark:border-white/20 dark:text-paper-300">
+              <span class="i-ph-hourglass-medium text-2xl text-accent-500" aria-hidden="true"></span>
               <p class="body-copy">Próximamente.</p>
             </div>
           ) : (
@@ -121,13 +121,13 @@ const total = entradas.length;
                     )}
                     <div class="flex flex-1 flex-col p-5">
                       {e.fecha && <p class="entry-meta tabular-nums">{e.fecha}</p>}
-                      <h3 class="entry-title mt-1 transition-colors group-hover:text-violet-700 dark:group-hover:text-violet-300">
+                      <h3 class="entry-title mt-1 transition-colors group-hover:text-accent-700 dark:group-hover:text-accent-300">
                         {e.titulo}
                       </h3>
                       {e.resumen && (
                         <p class="entry-summary mt-2 line-clamp-3">{e.resumen}</p>
                       )}
-                      <span class="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-bold text-violet-700 dark:text-violet-300">
+                      <span class="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-bold text-accent-700 dark:text-accent-300">
                         Ver más
                         <span class="i-ph-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></span>
                       </span>

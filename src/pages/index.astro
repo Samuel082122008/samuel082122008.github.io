@@ -33,10 +33,10 @@ const datos = [
 ];
 
 const aficiones = [
-  { icono: "i-ph-game-controller", titulo: "Videojuegos", detalle: "Jugar", gradiente: "from-violet-500 to-fuchsia-500" },
-  { icono: "i-ph-music-notes", titulo: "Música", detalle: "Escuchar", gradiente: "from-fuchsia-500 to-pink-500" },
-  { icono: "i-ph-soccer-ball", titulo: "Fútbol", detalle: "Verlo y jugarlo", gradiente: "from-emerald-500 to-cyan-500" },
-  { icono: "i-ph-lightbulb", titulo: "Aprender", detalle: "Siempre algo nuevo", gradiente: "from-amber-500 to-pink-500" },
+  { icono: "i-ph-game-controller", titulo: "Videojuegos", detalle: "Jugar", gradiente: "from-orange-600 to-red-500" },
+  { icono: "i-ph-music-notes", titulo: "Música", detalle: "Escuchar", gradiente: "from-rose-500 to-orange-500" },
+  { icono: "i-ph-soccer-ball", titulo: "Fútbol", detalle: "Verlo y jugarlo", gradiente: "from-yellow-600 to-amber-500" },
+  { icono: "i-ph-lightbulb", titulo: "Aprender", detalle: "Siempre algo nuevo", gradiente: "from-amber-600 to-orange-500" },
 ];
 
 const palabras = [...tecnologias, "Bases de Datos 1", "Universidad El Bosque", "Bogotá"];
@@ -50,11 +50,11 @@ const cinta = [...palabras, ...palabras, ...palabras, ...palabras];
 >
   <div class="page-stack">
     <!-- ================= HERO ================= -->
-    <section class="relative isolate overflow-hidden rounded-[2rem] border border-violet-200/70 bg-white/55 p-6 shadow-2xl dark:border-white/10 dark:bg-ink-900/50 sm:p-10 lg:p-14">
+    <section class="relative isolate overflow-hidden rounded-[2rem] border border-accent-200/70 bg-white/55 p-6 shadow-2xl dark:border-white/10 dark:bg-ink-900/50 sm:p-10 lg:p-14">
       <div class="fx-grid absolute inset-0 -z-10" aria-hidden="true"></div>
-      <div class="fx-blob fx-blob-violet fx-float -right-16 -top-20 -z-10 h-72 w-72" aria-hidden="true"></div>
-      <div class="fx-blob fx-blob-pink fx-float-slow -bottom-24 -left-12 -z-10 h-72 w-72" aria-hidden="true"></div>
-      <div class="fx-blob fx-blob-cyan fx-float-slow bottom-8 right-1/3 -z-10 h-56 w-56" aria-hidden="true"></div>
+      <div class="fx-blob fx-blob-1 fx-float -right-16 -top-20 -z-10 h-72 w-72" aria-hidden="true"></div>
+      <div class="fx-blob fx-blob-2 fx-float-slow -bottom-24 -left-12 -z-10 h-72 w-72" aria-hidden="true"></div>
+      <div class="fx-blob fx-blob-3 fx-float-slow bottom-8 right-1/3 -z-10 h-56 w-56" aria-hidden="true"></div>
 
       <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div class="min-w-0">
@@ -65,7 +65,7 @@ const cinta = [...palabras, ...palabras, ...palabras, ...palabras];
             </p>
           )}
 
-          <p class="fx-rise fx-d1 mt-6 text-lg font-semibold text-violet-700 dark:text-violet-300">
+          <p class="fx-rise fx-d1 mt-6 text-lg font-semibold text-accent-700 dark:text-accent-300">
             ¡Hola! Soy
           </p>
 
@@ -81,15 +81,15 @@ const cinta = [...palabras, ...palabras, ...palabras, ...palabras];
           {affiliations.length > 0 && (
             <div class="fx-rise fx-d2 mt-6 flex flex-wrap gap-2">
               {affiliations.map((aff) => (
-                <p class="inline-flex flex-wrap items-center gap-x-1.5 gap-y-1 rounded-2xl border border-violet-200/70 bg-white/70 px-3.5 py-2 text-sm text-ink-700 dark:border-white/10 dark:bg-white/5 dark:text-paper-200">
-                  <span class="i-ph-graduation-cap text-lg text-violet-600 dark:text-violet-300" aria-hidden="true"></span>
+                <p class="inline-flex flex-wrap items-center gap-x-1.5 gap-y-1 rounded-2xl border border-accent-200/70 bg-white/70 px-3.5 py-2 text-sm text-ink-700 dark:border-white/10 dark:bg-white/5 dark:text-paper-200">
+                  <span class="i-ph-graduation-cap text-lg text-accent-600 dark:text-accent-300" aria-hidden="true"></span>
                   <span>{aff.role}</span>
                   {aff.url ? (
                     <a
                       href={aff.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="font-bold text-violet-700 underline decoration-violet-300 underline-offset-4 hover:text-violet-900 dark:text-violet-300 dark:decoration-violet-700 dark:hover:text-violet-100"
+                      class="font-bold text-accent-700 underline decoration-accent-300 underline-offset-4 hover:text-accent-900 dark:text-accent-300 dark:decoration-accent-700 dark:hover:text-accent-100"
                     >
                       {aff.institution}
                     </a>
@@ -160,7 +160,7 @@ const cinta = [...palabras, ...palabras, ...palabras, ...palabras];
     <section class="fx-reveal grid grid-cols-2 gap-4 lg:grid-cols-4" aria-label="Datos rápidos">
       {datos.map((d) => (
         <article class="fx-card flex items-center gap-3 p-4">
-          <span class="fx-icon bg-gradient-to-br from-violet-500 to-fuchsia-500" style="width: 2.5rem; height: 2.5rem; font-size: 1.25rem;">
+          <span class="fx-icon bg-gradient-to-br from-orange-600 to-amber-500" style="width: 2.5rem; height: 2.5rem; font-size: 1.25rem;">
             <span class={d.icono} aria-hidden="true"></span>
           </span>
           <div class="min-w-0">
@@ -195,7 +195,7 @@ const cinta = [...palabras, ...palabras, ...palabras, ...palabras];
     <section class="fx-reveal grid gap-5 md:grid-cols-2">
       <article class="fx-card space-y-3 p-6">
         <div class="flex items-center gap-3">
-          <span class="fx-icon bg-gradient-to-br from-violet-500 to-fuchsia-500">
+          <span class="fx-icon bg-gradient-to-br from-orange-600 to-amber-500">
             <span class="i-ph-user-circle" aria-hidden="true"></span>
           </span>
           <h3 class="entry-title">Quién soy</h3>
@@ -214,7 +214,7 @@ const cinta = [...palabras, ...palabras, ...palabras, ...palabras];
 
       <article class="fx-card space-y-3 p-6">
         <div class="flex items-center gap-3">
-          <span class="fx-icon bg-gradient-to-br from-cyan-500 to-violet-500">
+          <span class="fx-icon bg-gradient-to-br from-red-500 to-orange-500">
             <span class="i-ph-target" aria-hidden="true"></span>
           </span>
           <h3 class="entry-title">Mi objetivo este semestre</h3>
