@@ -21,7 +21,7 @@ const secciones = [
   ...s,
   entradas: entradas
     .filter((e) => e.seccion === s.id)
-    .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))),
+    .sort((a, b) => Number(a.orden ?? 999) - Number(b.orden ?? 999)),
 }));
 
 const navItems = secciones.map((s) => ({ href: `#${s.id}`, label: s.titulo }));
