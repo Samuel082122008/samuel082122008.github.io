@@ -2,7 +2,7 @@
 titulo: "Proyecto 1: Propuesta del proyecto final"
 seccion: "proyecto"
 orden: 1
-fecha: "2026-10-11"
+fecha: "2026-09-22"
 resumen: "Propuesta de un sistema de base de datos relacional para gestionar la información de la Liga BetPlay de fútbol profesional colombiano."
 ---
 
@@ -41,28 +41,29 @@ Diseñar e implementar un sistema de gestión de bases de datos relacional que p
 
 ## Alcance
 
-El sistema se orienta exclusivamente a la Liga BetPlay, administrada por una sola organización. Permitirá gestionar los torneos (por ejemplo, cada temporada) con sus equipos, jugadores, entrenadores, árbitros, partidos, resultados y sanciones. Su uso es interno, no una plataforma pública.
-
-Quedan fuera del alcance la venta de boletería, la transmisión en vivo, los pagos o inscripciones en línea, la integración con otras ligas y la conexión con plataformas externas de streaming o redes sociales.
+El sistema se orienta exclusivamente a la Liga BetPlay, administrada por una sola organización. Permitirá gestionar los torneos (por ejemplo, cada temporada) con sus equipos, jugadores, entrenadores, árbitros, estadios, partidos, resultados, goles y sanciones. Se ejecuta de forma local e incluye una aplicación web sencilla con inicio de sesión y dos roles: **USUARIO** (consulta) y **ADMIN** (registra, modifica y elimina). Su uso es interno, no una plataforma pública.
 
 ## Entidades principales
 
-- **Torneo:** agrupa la información de una temporada (nombre, año, etapa, fechas de inicio y fin).
-- **Equipo:** nombre, ciudad, estadio y entrenador asociado.
-- **Jugador:** nombre, posición, número de camiseta, fecha de nacimiento y equipo.
-- **Entrenador:** información del cuerpo técnico de cada equipo.
-- **Partido:** fecha, hora, estadio y jornada de cada encuentro.
-- **Resultado:** marcador y detalles de cada partido jugado.
-- **Árbitro:** información de los árbitros asignados a los partidos.
-- **Tarjeta / Sanción:** amonestaciones (amarillas o rojas) de un jugador en un partido.
-- **Tabla de posiciones:** puntos, partidos jugados, ganados, empatados, perdidos y goles por equipo, calculada a partir de los resultados.
+- **Torneo:** agrupa la información de una temporada (nombre, año, semestre, fechas de inicio y fin).
+- **Equipo:** nombre, ciudad, fecha de fundación, colores, escudo, estadio sede y técnico.
+- **Jugador:** nombre, nacionalidad, fecha de nacimiento y posición. Su equipo y su dorsal se registran por torneo mediante la inscripción.
+- **Técnico:** cuerpo técnico que dirige a cada equipo.
+- **Estadio:** nombre, capacidad y ubicación donde se juegan los partidos.
+- **Partido:** fecha, hora, jornada, estadio, equipo local y equipo visitante.
+- **Resultado:** marcador de cada partido jugado.
+- **Árbitro:** información de los árbitros asignados a los partidos, con su rol en cada uno.
+- **Participación, gol y tarjeta:** intervención de un jugador en un partido, con los goles y las amonestaciones (amarillas o rojas) que ocurren en ella.
+- **Usuario y rol:** cuentas de la aplicación web, con su rol (ADMIN o USUARIO) y un equipo favorito opcional.
+- **Tabla de posiciones:** no se almacena; se calcula a partir de los resultados.
 
 ## Requerimientos funcionales principales
 
-- Registrar, consultar, actualizar y eliminar información de equipos, jugadores, entrenadores y árbitros.
+- Registrar, consultar, actualizar y eliminar información de equipos, jugadores, entrenadores, árbitros y usuarios con sus roles.
 - Programar los partidos de un torneo, asignando equipos, árbitros, fecha, hora y lugar.
 - Registrar el resultado de cada partido y actualizar automáticamente la tabla de posiciones.
 - Registrar las tarjetas o sanciones aplicadas durante cada partido.
 - Consultar estadísticas de un jugador: partidos jugados, goles y tarjetas acumuladas.
 - Consultar el historial de resultados de un equipo a lo largo de un torneo.
 - Generar la tabla de posiciones de un torneo en un momento determinado.
+- Iniciar sesión con verificación de correo y controlar el acceso por rol: los usuarios verificados consultan; solo el ADMIN modifica datos.
