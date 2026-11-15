@@ -79,7 +79,7 @@ WHERE  department_id = 90;
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.1](/images/sql/sql3-01.png)
+> ![Resultado ejercicio 3.1](/img/sql/sql3-01.png)
 
 **Álgebra relacional**
 
@@ -101,7 +101,7 @@ WHERE  last_name = 'Whalen';
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.2](/images/sql/sql3-02.png)
+> ![Resultado ejercicio 3.2](/img/sql/sql3-02.png)
 
 **Álgebra relacional**
 
@@ -125,7 +125,7 @@ WHERE  hire_date >= DATE '2007-01-01';
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.3](/images/sql/sql3-03.png)
+> ![Resultado ejercicio 3.3](/img/sql/sql3-03.png)
 
 **Álgebra relacional**
 
@@ -147,7 +147,7 @@ WHERE  salary <= 3000;
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.4](/images/sql/sql3-04.png)
+> ![Resultado ejercicio 3.4](/img/sql/sql3-04.png)
 
 **Álgebra relacional**
 
@@ -171,7 +171,7 @@ WHERE  salary BETWEEN 2500 AND 3500;
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.5](/images/sql/sql3-05.png)
+> ![Resultado ejercicio 3.5](/img/sql/sql3-05.png)
 
 **Álgebra relacional**
 
@@ -195,7 +195,7 @@ WHERE  manager_id IN (100, 101, 201);
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.6](/images/sql/sql3-06.png)
+> ![Resultado ejercicio 3.6](/img/sql/sql3-06.png)
 
 **Álgebra relacional**
 
@@ -227,7 +227,7 @@ WHERE  last_name LIKE '_o%';
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.7](/images/sql/sql3-07.png)
+> ![Resultado ejercicio 3.7](/img/sql/sql3-07.png)
 
 **Álgebra relacional**
 
@@ -256,7 +256,7 @@ Aquí `\_` es un guion bajo literal: se buscan los `job_id` que empiezan por `SA
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.8](/images/sql/sql3-08.png)
+> ![Resultado ejercicio 3.8](/img/sql/sql3-08.png)
 
 **Álgebra relacional**
 
@@ -280,7 +280,7 @@ WHERE  manager_id IS NULL;
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.9](/images/sql/sql3-09.png)
+> ![Resultado ejercicio 3.9](/img/sql/sql3-09.png)
 
 **Álgebra relacional**
 
@@ -313,7 +313,7 @@ AND    job_id LIKE '%MAN%';
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.10](/images/sql/sql3-10.png)
+> ![Resultado ejercicio 3.10](/img/sql/sql3-10.png)
 
 **Álgebra relacional**
 
@@ -337,7 +337,7 @@ OR     job_id LIKE '%MAN%';
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.11](/images/sql/sql3-11.png)
+> ![Resultado ejercicio 3.11](/img/sql/sql3-11.png)
 
 **Álgebra relacional**
 
@@ -362,7 +362,7 @@ WHERE  job_id NOT IN ('IT_PROG', 'ST_CLERK', 'SA_REP');
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.12](/images/sql/sql3-12.png)
+> ![Resultado ejercicio 3.12](/img/sql/sql3-12.png)
 
 **Álgebra relacional**
 
@@ -417,7 +417,7 @@ La primera consulta devuelve **todos** los del departamento 60 y, del 80, solo l
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.13](/images/sql/sql3-13.png)
+> ![Resultado ejercicio 3.13](/img/sql/sql3-13.png)
 
 **Álgebra relacional**
 
@@ -468,7 +468,7 @@ ORDER BY department_id, salary DESC;
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.14](/images/sql/sql3-14.png)
+> ![Resultado ejercicio 3.14](/img/sql/sql3-14.png)
 
 **Álgebra relacional**
 
@@ -516,7 +516,7 @@ OFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY;
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.15](/images/sql/sql3-15.png)
+> ![Resultado ejercicio 3.15](/img/sql/sql3-15.png)
 
 **Álgebra relacional**
 
@@ -555,7 +555,7 @@ Al escribir `101` en la ventana, devuelve a Kochhar.
 
 > 📷 **Aquí va tu captura** (de la ventana de la variable y del resultado)
 >
-> ![Resultado ejercicio 3.16](/images/sql/sql3-16.png)
+> ![Resultado ejercicio 3.16](/img/sql/sql3-16.png)
 
 **Álgebra relacional**
 
@@ -582,7 +582,7 @@ Valores usados en las ventanas: `salary`, `salary > 15000` y `last_name`.
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.17](/images/sql/sql3-17.png)
+> ![Resultado ejercicio 3.17](/img/sql/sql3-17.png)
 
 **Álgebra relacional**
 
@@ -610,7 +610,7 @@ Con `department_id` como valor, solo pregunta una vez y usa ese valor en el `SEL
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.18](/images/sql/sql3-18.png)
+> ![Resultado ejercicio 3.18](/img/sql/sql3-18.png)
 
 **Álgebra relacional**
 
@@ -645,7 +645,7 @@ WHERE  employee_id = &employee_num;
 
 > 📷 **Aquí va tu captura**
 >
-> ![Resultado ejercicio 3.19](/images/sql/sql3-19.png)
+> ![Resultado ejercicio 3.19](/img/sql/sql3-19.png)
 
 **Álgebra relacional**
 

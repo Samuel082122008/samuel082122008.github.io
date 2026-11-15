@@ -78,9 +78,7 @@ FROM   departments;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.1](/images/sql/sql2-01.png)
+>(/img/sql/sql2-01.png)
 
 **Álgebra relacional**
 
@@ -103,9 +101,7 @@ FROM   departments;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.2](/images/sql/sql2-02.png)
+> (/img/sql/sql2-02.png)
 
 **Álgebra relacional**
 
@@ -129,9 +125,7 @@ FROM   dual;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.3](/images/sql/sql2-03.png)
+> ![Resultado ejercicio 2.3](/img/sql/sql2-03.png)
 
 **Álgebra relacional**
 
@@ -155,9 +149,7 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.4](/images/sql/sql2-04.png)
+> (/img/sql/sql2-04.png)
 
 **Álgebra relacional**
 
@@ -183,9 +175,8 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.5](/images/sql/sql2-05.png)
+> (/img/sql/sql2-051.png)
+> (/img/sql/sql2-052.png)
 
 **Álgebra relacional**
 
@@ -210,9 +201,9 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.6](/images/sql/sql2-06.png)
+> (/img/sql/sql2-061.png)
+> (/img/sql/sql2-062.png)
+
 
 **Álgebra relacional**
 
@@ -239,9 +230,8 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.7](/images/sql/sql2-07.png)
+> (/img/sql/sql2-071.png)
+> (/img/sql/sql2-072.png)
 
 **Álgebra relacional**
 
@@ -263,9 +253,7 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.8](/images/sql/sql2-08.png)
+> (/img/sql/sql2-08.png)
 
 **Álgebra relacional**
 
@@ -286,9 +274,7 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.9](/images/sql/sql2-09.png)
+> (/img/sql/sql2-09.png)
 
 **Álgebra relacional**
 
@@ -304,7 +290,7 @@ FROM   employees;
 
 ```sql
 SELECT department_name ||
-       q'[ Department's Manager Id: ]'
+       q'[ Department´s Manager Id: ]'
        || manager_id
        AS "Department and Manager"
 FROM   departments;
@@ -312,9 +298,7 @@ FROM   departments;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.10](/images/sql/sql2-10.png)
+> (/img/sql/sql2-10.png)
 
 **Álgebra relacional**
 
@@ -341,9 +325,9 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.11](/images/sql/sql2-11.png)
+> (/img/sql/sql2-111.png)
+> (/img/sql/sql2-112.png)
+
 
 **Álgebra relacional**
 
@@ -366,9 +350,7 @@ DESCRIBE departments
 
 **Resultado en SQL Developer**
 
-> 📷 **Aquí va tu captura**
->
-> ![Resultado ejercicio 2.12](/images/sql/sql2-12.png)
+> (/img/sql/sql2-12.png)
 
 **Álgebra relacional**
 

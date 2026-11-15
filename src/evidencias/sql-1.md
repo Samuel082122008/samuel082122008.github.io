@@ -95,9 +95,6 @@ Observaciones útiles:
 - `employees.manager_id` es una **relación recursiva** (un empleado es jefe de otro empleado de la misma tabla).
 - `departments.manager_id` apunta a `employees`, y `employees.department_id` apunta a `departments`: las dos tablas se referencian entre sí.
 
-> 📷 **Aquí va tu captura:** diagrama de las tablas del esquema HR (por ejemplo el diagrama de tablas de la presentación o uno generado en SQL Developer).
->
-> ![Esquema HR](/images/sql/sql1-esquema-hr.png)
 
 ## 6. SQL y entornos de desarrollo
 
