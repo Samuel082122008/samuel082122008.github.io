@@ -3,7 +3,7 @@ titulo: "SQL 2: Recuperar datos con la sentencia SELECT"
 seccion: "sql"
 orden: 2
 fecha: "2026-11-15"
-resumen: "Ejercicios de SELECT en Oracle SQL Developer (esquema HR): columnas, expresiones, NULL, alias, concatenación, DISTINCT y DESCRIBE, cada uno con su álgebra relacional."
+resumen: "Ejercicios de SELECT en Oracle SQL Developer: columnas, expresiones, NULL, alias, concatenación, DISTINCT y DESCRIBE."
 ---
 
 **Asignatura:** Bases de Datos 1, Universidad El Bosque

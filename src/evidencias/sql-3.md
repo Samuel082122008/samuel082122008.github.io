@@ -3,7 +3,7 @@ titulo: "SQL 3: Restringir y ordenar datos"
 seccion: "sql"
 orden: 3
 fecha: "2026-11-15"
-resumen: "Ejercicios de WHERE, LIKE, NULL, AND/OR/NOT, ORDER BY, límite de filas y variables de sustitución en Oracle SQL Developer, con su álgebra relacional."
+resumen: "Ejercicios de WHERE, LIKE, NULL, AND/OR/NOT, ORDER BY, límite de filas en Oracle SQL Developer, con su álgebra relacional."
 ---
 
 **Asignatura:** Bases de Datos 1, Universidad El Bosque
