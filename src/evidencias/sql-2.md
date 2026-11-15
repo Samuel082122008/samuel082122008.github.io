@@ -78,7 +78,7 @@ FROM   departments;
 
 **Resultado en SQL Developer**
 
->(/img/sql/sql2-01.png)
+>![Resultado ejercicio 2.1](/img/sql/sql2-01.png)
 
 **Álgebra relacional**
 
@@ -101,7 +101,7 @@ FROM   departments;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-02.png)
+> ![Resultado ejercicio 2.2](/img/sql/sql2-02.png)
 
 **Álgebra relacional**
 
@@ -149,7 +149,7 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-04.png)
+> ![Resultado ejercicio 2.4](/img/sql/sql2-04.png)
 
 **Álgebra relacional**
 
@@ -175,8 +175,8 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-051.png)
-> (/img/sql/sql2-052.png)
+> ![Resultado ejercicio 2.5](/img/sql/sql2-051.png)
+> ![Resultado ejercicio 2.5](/img/sql/sql2-052.png)
 
 **Álgebra relacional**
 
@@ -201,8 +201,8 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-061.png)
-> (/img/sql/sql2-062.png)
+> ![Resultado ejercicio 2.6](/img/sql/sql2-061.png)
+> ![Resultado ejercicio 2.6](/img/sql/sql2-062.png)
 
 
 **Álgebra relacional**
@@ -230,8 +230,8 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-071.png)
-> (/img/sql/sql2-072.png)
+> ![Resultado ejercicio 2.7](/img/sql/sql2-071.png)
+> ![Resultado ejercicio 2.7](/img/sql/sql2-072.png)
 
 **Álgebra relacional**
 
@@ -253,7 +253,7 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-08.png)
+> ![Resultado ejercicio 2.8](/img/sql/sql2-08.png)
 
 **Álgebra relacional**
 
@@ -274,7 +274,7 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-09.png)
+> ![Resultado ejercicio 2.9](/img/sql/sql2-09.png)
 
 **Álgebra relacional**
 
@@ -298,7 +298,7 @@ FROM   departments;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-10.png)
+> ![Resultado ejercicio 2.10](/img/sql/sql2-10.png)
 
 **Álgebra relacional**
 
@@ -325,8 +325,8 @@ FROM   employees;
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-111.png)
-> (/img/sql/sql2-112.png)
+> ![Resultado ejercicio 2.11](/img/sql/sql2-111.png)
+> ![Resultado ejercicio 2.11](/img/sql/sql2-112.png)
 
 
 **Álgebra relacional**
@@ -350,7 +350,7 @@ DESCRIBE departments
 
 **Resultado en SQL Developer**
 
-> (/img/sql/sql2-12.png)
+> ![Resultado ejercicio 2.12](/img/sql/sql2-12.png)
 
 **Álgebra relacional**
 
