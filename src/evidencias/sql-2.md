@@ -3,73 +3,33 @@ titulo: "SQL 2: Recuperar datos con la sentencia SELECT"
 seccion: "sql"
 orden: 2
 fecha: "2026-11-15"
-resumen: "Capacidades de SELECT, expresiones aritméticas, valores NULL, alias, concatenación, DISTINCT y DESCRIBE, con ejercicios en Oracle SQL Developer y su equivalente en álgebra relacional."
+resumen: "Ejercicios de SELECT en Oracle SQL Developer (esquema HR): columnas, expresiones, NULL, alias, concatenación, DISTINCT y DESCRIBE, cada uno con su álgebra relacional."
 ---
 
 **Asignatura:** Bases de Datos 1, Universidad El Bosque
-**Tema:** Retrieving Data Using the SQL SELECT Statement (presentación SQL_C2)
+**Tema:** Retrieving Data Using the SQL SELECT Statement (SQL_C2)
 **Herramienta:** Oracle SQL Developer, esquema HR
 
-## Objetivos
+En esta práctica hice consultas básicas con `SELECT` sobre el esquema HR y escribí cada una también en álgebra relacional.
 
-- Listar las capacidades de las sentencias `SELECT`.
-- Ejecutar una sentencia `SELECT` básica.
-- Usar expresiones aritméticas, alias, concatenación y `DISTINCT`.
-- Escribir cada consulta también en álgebra relacional.
+## Notación de álgebra relacional
 
-## Notación de álgebra relacional usada
-
-| Símbolo | Operador | Equivale en SQL |
+| Símbolo | Operador | En SQL |
 |---|---|---|
-| `σ` | Selección: filtra filas | `WHERE` |
-| `π` | Proyección: elige columnas | lista de columnas del `SELECT` |
+| `σ` | Selección (filtra filas) | `WHERE` |
+| `π` | Proyección (elige columnas) | lista del `SELECT` |
 | `ρ` | Renombrado | alias (`AS`) |
 | `δ` | Eliminación de duplicados | `DISTINCT` |
-| `τ` | Ordenamiento (álgebra extendida) | `ORDER BY` |
-| `⋈` | Reunión (join) | `JOIN` |
-| `∧`, `∨`, `¬` | Y, O, NO | `AND`, `OR`, `NOT` |
 
-En el álgebra relacional clásica una relación es un **conjunto**, así que no tiene filas repetidas. SQL en cambio trabaja con **multiconjuntos**: devuelve duplicados salvo que se use `DISTINCT`. Por eso la proyección `π` clásica equivale a un `SELECT DISTINCT`, y un `SELECT` sin `DISTINCT` corresponde al álgebra de multiconjuntos. Se explica con el ejercicio 2.11.
+Una nota: en el álgebra clásica una relación es un conjunto y no tiene filas repetidas, pero SQL sí las devuelve si no se usa `DISTINCT`. Por eso el ejercicio 2.11 se plantea con álgebra de multiconjuntos.
 
 ---
 
-## 1. Capacidades de la sentencia SELECT
+## Ejercicios
 
-Un `SELECT` puede hacer tres cosas:
+### Ejercicio 2.1
 
-- **Proyección:** elegir las columnas que se quieren ver.
-- **Selección:** elegir las filas que se quieren ver (se estudia en SQL 3, con `WHERE`).
-- **Unión (join):** combinar datos de varias tablas (se estudia más adelante).
-
-> En el escenario de la presentación (*HR Application*), un usuario quiere la lista de empleados del departamento de Contabilidad: la consulta elige columnas (proyección), filtra por departamento (selección) y entrega un conjunto resultado.
-
-## 2. Reglas para escribir sentencias SQL
-
-- Las sentencias SQL **no distinguen mayúsculas de minúsculas** (los datos guardados sí).
-- Pueden escribirse en una o varias líneas.
-- Las palabras clave **no se abrevian ni se parten** entre líneas.
-- Las cláusulas se ponen normalmente en líneas separadas.
-- Se usa sangría para que sea más legible.
-
-## 3. Sentencia SELECT básica
-
-```sql
-SELECT *|{[DISTINCT] columna [alias], ...}
-FROM   tabla;
-```
-
-- `SELECT` identifica **las columnas** que se muestran.
-- `FROM` identifica **la tabla** que contiene esas columnas.
-
-**Ejecutar en SQL Developer:** escribir la sentencia en la hoja de trabajo y usar **Ejecutar sentencia** (`Ctrl+Enter`, muestra el resultado en una cuadrícula) o **Ejecutar script** (`F5`, muestra el resultado como texto en *Script Output*). Los encabezados de columna salen en mayúsculas y alineados a la izquierda por defecto.
-
----
-
-## 4. Ejercicios
-
-### Ejercicio 2.1. Seleccionar todas las columnas
-
-**Concepto:** el asterisco `*` devuelve todas las columnas de la tabla.
+**Enunciado:** mostrar toda la información de la tabla `departments`.
 
 ```sql
 SELECT *
@@ -86,13 +46,11 @@ FROM   departments;
 departments
 ```
 
-Sin proyección ni selección, el resultado es la relación completa.
-
 ---
 
-### Ejercicio 2.2. Seleccionar columnas específicas
+### Ejercicio 2.2
 
-**Concepto:** se listan las columnas separadas por comas, en el orden en que se quieren ver.
+**Enunciado:** mostrar solo el id del departamento y el id de la ubicación de la tabla `departments`.
 
 ```sql
 SELECT department_id, location_id
@@ -111,9 +69,9 @@ FROM   departments;
 
 ---
 
-### Ejercicio 2.3. La tabla DUAL
+### Ejercicio 2.3
 
-**Concepto:** `dual` es una tabla que Oracle crea automáticamente. Tiene **una columna** llamada `DUMMY` (tipo `VARCHAR2(1)`) y **una fila** con el valor `X`. Sirve para evaluar expresiones o funciones que no dependen de ninguna tabla.
+**Enunciado:** consultar la tabla `dual` y obtener la fecha actual del sistema.
 
 ```sql
 SELECT *
@@ -134,13 +92,13 @@ dual
 π SYSDATE (dual)
 ```
 
-`dual` se trata como una relación de una sola tupla. `SYSDATE` es una función que se evalúa para cada tupla de esa relación.
+`dual` tiene una sola columna (`DUMMY`) y una sola fila, por eso sirve para evaluar cosas como `SYSDATE`.
 
 ---
 
-### Ejercicio 2.4. Expresiones aritméticas
+### Ejercicio 2.4
 
-**Concepto:** se pueden crear expresiones con datos numéricos y de fecha usando `+`, `-`, `*` y `/`.
+**Enunciado:** mostrar el apellido y el salario de cada empleado, junto con el salario aumentado en 300.
 
 ```sql
 SELECT last_name, salary, salary + 300
@@ -157,13 +115,11 @@ FROM   employees;
 π last_name, salary, salary + 300 (employees)
 ```
 
-Es una proyección generalizada: en la lista de la proyección se permiten expresiones calculadas.
-
 ---
 
-### Ejercicio 2.5. Precedencia de operadores
+### Ejercicio 2.5
 
-**Concepto:** `*` y `/` se evalúan antes que `+` y `-`. Los paréntesis cambian el orden.
+**Enunciado:** mostrar apellido, salario y el resultado de `12*salary + 100` y de `12*(salary + 100)`, para ver cómo cambia el resultado con los paréntesis.
 
 ```sql
 SELECT last_name, salary, 12*salary + 100
@@ -187,9 +143,9 @@ FROM   employees;
 
 ---
 
-### Ejercicio 2.6. Valores NULL
+### Ejercicio 2.6
 
-**Concepto:** `NULL` es un valor no disponible, no asignado, desconocido o no aplicable. **No es lo mismo que cero o un espacio en blanco.** Una expresión aritmética que contiene un `NULL` da como resultado `NULL`.
+**Enunciado:** mostrar apellido, cargo, salario y porcentaje de comisión de los empleados, y luego calcular el ingreso anual por comisión (`12*salary*commission_pct`).
 
 ```sql
 SELECT last_name, job_id, salary, commission_pct
@@ -204,7 +160,6 @@ FROM   employees;
 > ![Resultado ejercicio 2.6](/img/sql/sql2-061.png)
 > ![Resultado ejercicio 2.6](/img/sql/sql2-062.png)
 
-
 **Álgebra relacional**
 
 ```
@@ -212,13 +167,13 @@ FROM   employees;
 π last_name, 12*salary*commission_pct (employees)
 ```
 
-Los empleados sin comisión (`commission_pct` nulo) aparecen con `NULL` en la segunda consulta, porque cualquier operación aritmética con `NULL` produce `NULL` (lógica de tres valores: verdadero, falso y desconocido).
+Los empleados sin comisión salen con `NULL` en la segunda consulta, porque cualquier operación aritmética con `NULL` da `NULL`.
 
 ---
 
-### Ejercicio 2.7. Alias de columna
+### Ejercicio 2.7
 
-**Concepto:** un alias renombra el encabezado de una columna; es útil con cálculos. Va justo después de la columna, con la palabra `AS` opcional. Si el alias tiene **espacios, caracteres especiales o distingue mayúsculas**, necesita **comillas dobles**.
+**Enunciado:** mostrar el apellido como `name` y la comisión como `comm`; después el apellido como `Name` y el salario anual como `Annual Salary`.
 
 ```sql
 SELECT last_name AS name, commission_pct comm
@@ -240,11 +195,13 @@ FROM   employees;
 ρ Name, Annual_Salary (π last_name, salary*12 (employees))
 ```
 
+Cuando el alias tiene espacios o mayúsculas hay que ponerlo entre comillas dobles.
+
 ---
 
-### Ejercicio 2.8. Operador de concatenación
+### Ejercicio 2.8
 
-**Concepto:** en Oracle el operador de concatenación son **dos barras verticales** (`||`). Une columnas o cadenas y crea una columna resultado de tipo carácter.
+**Enunciado:** mostrar el apellido y el cargo de cada empleado unidos en una sola columna llamada `Employees`.
 
 ```sql
 SELECT last_name||job_id AS "Employees"
@@ -263,9 +220,9 @@ FROM   employees;
 
 ---
 
-### Ejercicio 2.9. Cadenas literales
+### Ejercicio 2.9
 
-**Concepto:** un literal es un carácter, número o fecha incluido en el `SELECT`. Los literales de carácter y de fecha van entre **comillas simples**, y se muestran una vez por cada fila devuelta.
+**Enunciado:** mostrar una frase por empleado con el formato "apellido is a cargo", en una columna llamada `Employee Details`.
 
 ```sql
 SELECT last_name || ' is a ' || job_id AS "Employee Details"
@@ -284,9 +241,9 @@ FROM   employees;
 
 ---
 
-### Ejercicio 2.10. Operador de comillas alternativo (q)
+### Ejercicio 2.10
 
-**Concepto:** el operador `q` permite escoger **tu propio delimitador** para una cadena. Así se puede escribir una comilla simple dentro del texto sin duplicarla, y se gana legibilidad.
+**Enunciado:** mostrar el nombre de cada departamento junto con el id de su gerente, en una columna llamada `Department and Manager`, usando el operador `q` para escribir el apóstrofe sin problemas.
 
 ```sql
 SELECT department_name ||
@@ -307,13 +264,13 @@ FROM   departments;
   (π department_name || ' Department''s Manager Id: ' || manager_id (departments))
 ```
 
-Cuando `manager_id` es `NULL` (por ejemplo el departamento *Contracting*), Oracle trata el `NULL` como cadena vacía en la concatenación, y el texto sale sin número al final.
+Si `manager_id` es `NULL` (como en *Contracting*), la concatenación lo toma como cadena vacía y el texto queda sin número al final.
 
 ---
 
-### Ejercicio 2.11. Filas duplicadas y DISTINCT
+### Ejercicio 2.11
 
-**Concepto:** por defecto una consulta muestra **todas las filas, incluidas las duplicadas**. `DISTINCT` elimina las repetidas.
+**Enunciado:** mostrar el id de departamento de todos los empleados, primero con repetidos y luego sin repetidos.
 
 ```sql
 SELECT department_id
@@ -328,21 +285,20 @@ FROM   employees;
 > ![Resultado ejercicio 2.11](/img/sql/sql2-111.png)
 > ![Resultado ejercicio 2.11](/img/sql/sql2-112.png)
 
-
 **Álgebra relacional**
 
 ```
-π department_id (employees)          -- sin DISTINCT (álgebra de multiconjuntos)
+π department_id (employees)          -- sin DISTINCT (multiconjuntos)
 δ ( π department_id (employees) )    -- con DISTINCT
 ```
 
-En el álgebra relacional clásica una relación es un conjunto, así que `π` ya elimina duplicados y equivale a `SELECT DISTINCT`. Para modelar el comportamiento por defecto de SQL se usa el álgebra de multiconjuntos (*bag algebra*), donde `π` conserva los repetidos y el operador `δ` (eliminación de duplicados) corresponde a `DISTINCT`.
+En el álgebra clásica `π` ya quita los duplicados. Para representar lo que hace SQL por defecto uso álgebra de multiconjuntos, donde `π` deja los repetidos y `δ` equivale a `DISTINCT`.
 
 ---
 
-### Ejercicio 2.12. Estructura de una tabla con DESCRIBE
+### Ejercicio 2.12
 
-**Concepto:** el comando `DESCRIBE` muestra la estructura de una tabla: nombre de columnas, tipo de dato y si admite nulos. Es un comando de SQL Developer y SQL\*Plus, no una sentencia SQL. En SQL Developer también se ve seleccionando la tabla en el árbol de **Conexiones** y abriendo la pestaña **Columnas**.
+**Enunciado:** ver la estructura de la tabla `departments` (columnas, tipos de dato y si aceptan nulos).
 
 ```sql
 DESCRIBE departments
@@ -356,19 +312,15 @@ DESCRIBE departments
 
 ```
 No aplica: DESCRIBE consulta metadatos, no tuplas.
-Esquema de la relación: departments(department_id, department_name, manager_id, location_id)
+Esquema: departments(department_id, department_name, manager_id, location_id)
 ```
+
+`DESCRIBE` es un comando de SQL Developer y SQL\*Plus, no una sentencia SQL.
 
 ---
 
 ## Resumen
 
-Una sentencia `SELECT` bien escrita:
+Con estos ejercicios practiqué traer todas las columnas o solo algunas, hacer cálculos, usar alias, concatenar texto, quitar duplicados con `DISTINCT` y ver la estructura de una tabla con `DESCRIBE`. También vi que cualquier cálculo con `NULL` da `NULL`.
 
-- Devuelve todas las filas y columnas de una tabla (`SELECT *`).
-- Devuelve columnas específicas (proyección).
-- Usa alias para mostrar encabezados más descriptivos.
-- Permite cálculos, concatenación y literales, y `DISTINCT` elimina duplicados.
-- Con `DESCRIBE` se consulta la estructura de una tabla.
-
-*Fuente: presentación SQL_C2 Retrieving Data Using the SQL SELECT Statement, Bases de Datos 1, Ing. Christian Felipe Duarte, 2026-1. Solo se incluye el contenido de Oracle.*
+*Fuente: presentación SQL_C2, Bases de Datos 1, Ing. Christian Felipe Duarte, 2026-1.*
