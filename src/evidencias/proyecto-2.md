@@ -10,7 +10,7 @@ resumen: "Modelo entidad-relación en notación Peter Chen de la Liga BetPlay: 1
 **Fase:** 1, Modelo entidad-relación (notación Peter Chen)  
 **Integrantes:** Felipe Sierra, Samuel Cubillos, Antoine Blanco
 
-[Descargar el diagrama (PDF)](/docs/ER_Chen_BD1.pdf)
+<a href="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Modelo-Enditad-Relacion%20Proyecto%20Final%20Bases%20de%20Datos.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1_nSS_n_VPcDwqMsjRz1k6HhqVOuUiJNx%26export%3Ddownload" target="_blank" rel="noopener">Ver el diagrama en draw.io</a>
 
 ![Modelo entidad-relación en notación Peter Chen](/img/er-chen-betplay.png)
 

@@ -10,7 +10,7 @@ resumen: "MER extendido de la Liga BetPlay: especialización de JUGADOR por posi
 **Fase:** 1, MER extendido  
 **Integrantes:** Felipe Sierra, Samuel Cubillos, Antoine Blanco
 
-[Descargar el diagrama (PDF)](/docs/MER_Extendido_BD1.pdf)
+<a href="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Modelo-Enditad-Relacion-Extendido%20Proyecto%20Final%20Bases%20de%20Datos.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1o0s4lOZAkhysiUz31kFXDzrcxS8f9xIu%26export%3Ddownload" target="_blank" rel="noopener">Ver el diagrama en draw.io</a>
 
 ![Modelo entidad-relación extendido](/img/er-extendido-betplay.png)
 

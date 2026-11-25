@@ -10,6 +10,8 @@ resumen: "Reducción del MER extendido a 22 tablas normalizadas hasta la tercera
 **Fase:** 1, Modelo relacional  
 **Integrantes:** Felipe Sierra, Samuel Cubillos, Antoine Blanco
 
+<a href="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Reducci%C3%B3n%20a%20tablas.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1-_oZO0TjSIzULdzIZvwkKjjN-t6BKj0e%26export%3Ddownload" target="_blank" rel="noopener">Ver el diagrama en draw.io</a>
+
 ![Reducción a tablas del modelo relacional](/img/reduccion-a-tablas-betplay.png)
 
 ## ¿Qué hice?
