@@ -30,7 +30,7 @@ resumen: "Partí del modelo entidad-relación de una librería en línea con var
 
 Cada entidad intermedia toma como clave las claves de las dos entidades que conecta. Los atributos propios de las relaciones (`número`) quedaron dentro de la entidad nueva. Todo el trabajo lo hice en draw.io.
 
-![Modelo transformado](/images/modelado-1.png)
+![Modelo transformado](/img/modelado-1.png)
 
 [Ver el modelo en draw.io](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&dark=auto#G1NFqSluQhovIdDPX3_hFUcKW1Y7-uYTzY)
 
