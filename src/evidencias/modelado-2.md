@@ -30,6 +30,6 @@ Apliqué una regla de transformación a cada elemento del modelo original que no
 - Una especialización total y disjunta se refleja con relaciones 1:1 hacia las subentidades. Además, `idiomas` por ser multivaluado también debe convertirse en entidad.
 - Cada transformación hay que justificarla con la regla aplicada, no basta con dibujar el resultado.
 
-![Modelo transformado AeroAndes](/images/modelado-2-taller.png)
+![Modelo transformado AeroAndes](/img/modelado-2-taller.png)
 
 [Ver el modelo en draw.io](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Copia%20de%20Taller&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1fxD4CiXxuO2MGfdzVm1OVv3Z3WuBRFMC%26export%3Ddownload)
